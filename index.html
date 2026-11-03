@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light dark">
+<title>لیست قیمت</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f6fa;--card:#fff;--tx:#1b2433;--mut:#6b7686;--ac:#1f3864;--ln:#dfe4ec;--pr:#0b7a3b;--wa:#b45309;--wh:#128c4a}
+@media (prefers-color-scheme:dark){:root{--bg:#10141b;--card:#1a202b;--tx:#e8ecf2;--mut:#9aa5b5;--ac:#8fb0ff;--ln:#2a3342;--pr:#4ade80;--wa:#fbbf24;--wh:#34d399}}
+*,*:before,*:after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:Vazirmatn,Tahoma,Arial,sans-serif;line-height:1.6;padding-bottom:env(safe-area-inset-bottom,0)}
+.wrap{max-width:900px;margin:0 auto;padding:14px}
+header{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:6px}
+h1{font-size:1.15rem;margin:2px 0;color:var(--ac)}
+.sub{font-size:.8rem;color:var(--mut)}
+.upd{font-size:.74rem;color:var(--mut);margin:2px 0 0}
+.unit{font:inherit;font-size:.78rem;border:1px solid var(--ln);background:var(--card);color:var(--tx);border-radius:10px;padding:6px 10px;cursor:pointer;white-space:nowrap}
+.sb{position:sticky;top:0;background:var(--bg);padding:8px 0;z-index:5}
+#q{width:100%;font:inherit;font-size:1rem;padding:12px 14px;border:2px solid var(--ac);border-radius:12px;background:var(--card);color:var(--tx);outline:none}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.chips button{font:inherit;font-size:.78rem;border:1px solid var(--ln);background:var(--card);color:var(--tx);border-radius:999px;padding:5px 12px;cursor:pointer}
+.chips button.on{background:var(--ac);color:var(--bg);border-color:var(--ac)}
+.cnt{font-size:.78rem;color:var(--mut);margin:8px 2px}
+#res{display:grid;grid-template-columns:1fr;gap:10px}
+@media (min-width:720px){#res{grid-template-columns:1fr 1fr}}
+.cd{display:flex;gap:12px;background:var(--card);border:1px solid var(--ln);border-radius:14px;padding:10px}
+.ph{flex:0 0 96px;width:96px;height:96px;border-radius:10px;background:#fff;border:1px solid var(--ln);padding:0;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:zoom-in}
+.ph img{width:100%;height:100%;object-fit:contain}
+.ph.no{cursor:default;font-size:.7rem;color:var(--mut);background:var(--bg)}
+.in{flex:1;min-width:0}
+.fa{font-weight:700;font-size:.95rem}
+.en{font-size:.78rem;color:var(--mut);direction:ltr;text-align:right;unicode-bidi:isolate}
+.cdw{display:flex;gap:5px;flex-wrap:wrap;margin:4px 0}
+.cdw span{direction:ltr;unicode-bidi:isolate;font-size:.74rem;background:var(--bg);border:1px solid var(--ln);border-radius:6px;padding:0 6px}
+.nt{font-size:.76rem;color:var(--mut)}
+.pr{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;margin-top:6px}
+.pr b{font-size:1.05rem;color:var(--pr)}
+.pr s{font-size:.8rem;color:var(--mut)}
+.pr b.ds{color:var(--wa)}
+.pr span{font-size:.74rem;color:var(--mut)}
+.wa{display:inline-block;margin-top:6px;font-size:.76rem;color:var(--wh);text-decoration:none;border:1px solid var(--wh);border-radius:8px;padding:2px 10px}
+.empty,.msg{text-align:center;color:var(--mut);padding:30px 10px}
+.more{display:block;width:100%;font:inherit;margin:14px 0;padding:11px;border:1px solid var(--ln);background:var(--card);color:var(--tx);border-radius:12px;cursor:pointer}
+footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--ln);font-size:.8rem;color:var(--mut)}
+footer a{color:var(--ac)}
+.lb{position:fixed;inset:0;background:#000d;display:none;align-items:center;justify-content:center;z-index:30;padding:16px}
+.lb.on{display:flex}
+.lb img{max-width:100%;max-height:88vh;background:#fff;border-radius:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+ <div><h1 id="tt">لیست قیمت</h1><div class="sub" id="st"></div><div class="upd" id="up"></div></div>
+ <button class="unit" id="un" type="button"></button>
+</header>
+<div class="sb">
+ <input id="q" type="search" placeholder="جستجو: نام کالا، کد یا شماره‌ی فنی" autocomplete="off" enterkeyhint="search">
+ <div class="chips" id="br"></div>
+</div>
+<div class="cnt" id="cn"></div>
+<div id="res"><div class="msg">در حال بارگذاری لیست قیمت…</div></div>
+<button class="more" id="mo" type="button" style="display:none"></button>
+<footer id="ft"></footer>
+</div>
+<div class="lb" id="lb"><img id="lbi" alt=""></div>
+<noscript><div class="msg">برای دیدن لیست قیمت، جاوااسکریپت مرورگر باید فعال باشه.</div></noscript>
+<script>
+(function(){
+'use strict';
+var $=function(i){return document.getElementById(i);};
+var AR={'ي':'ی','ك':'ک','ة':'ه','أ':'ا','إ':'ا','آ':'ا'};
+function norm(s){
+  s=String(s||'').toLowerCase().replace(/[يكةأإآ]/g,function(c){return AR[c];}).replace(/\u200c/g,' ');
+  s=s.replace(/[۰-۹]/g,function(c){return '۰۱۲۳۴۵۶۷۸۹'.indexOf(c);}).replace(/[٠-٩]/g,function(c){return '٠١٢٣٤٥٦٧٨٩'.indexOf(c);});
+  return s.replace(/\s+/g,' ').trim();
+}
+function comp(s){return s.replace(/[^a-z0-9\u0600-\u06ff*]/g,'');}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+
+var D=null,ALL=[],VIEW=[],LIM=30,STEP=30,BR='all',UNIT='rial',TM=null;
+try{if(localStorage.getItem('cu_unit')==='toman')UNIT='toman';}catch(e){}
+
+function money(n){var v=UNIT==='toman'?Math.round(n/10):Math.round(n);return v.toLocaleString('en-US').replace(/\d/g,function(d){return '۰۱۲۳۴۵۶۷۸۹'[d];});}
+function unitName(){return UNIT==='toman'?'تومان':'ریال';}
+function waNum(){
+  var p=String((D&&D.shop&&D.shop.phone)||'').replace(/[۰-۹]/g,function(c){return '۰۱۲۳۴۵۶۷۸۹'.indexOf(c);}).replace(/\D/g,'');
+  if(/^09\d{9}$/.test(p))return '98'+p.slice(1);
+  if(/^989\d{9}$/.test(p))return p;
+  return '';
+}
+function telNum(){return String((D&&D.shop&&D.shop.phone)||'').replace(/[۰-۹]/g,function(c){return '۰۱۲۳۴۵۶۷۸۹'.indexOf(c);}).replace(/[^\d+]/g,'');}
+
+function card(it){
+  var h='<div class="cd">';
+  if(it.im)h+='<button type="button" class="ph" data-im="'+esc(it.im)+'" aria-label="بزرگ‌نمایی عکس"><img loading="lazy" decoding="async" width="96" height="96" src="'+esc(it.im)+'" alt="" onerror="this.parentNode.className=\'ph no\';this.parentNode.textContent=\'بدون عکس\'"></button>';
+  else h+='<div class="ph no">بدون عکس</div>';
+  h+='<div class="in"><div class="fa">'+esc(it.n)+'</div>';
+  if(it.e)h+='<div class="en">'+esc(it.e)+'</div>';
+  var codes=[];if(it.c)codes.push(it.c);if(it.o)codes.push(it.o.length>70?it.o.slice(0,70)+'…':it.o);
+  if(codes.length)h+='<div class="cdw">'+codes.map(function(c){return '<span>'+esc(c)+'</span>';}).join('')+'</div>';
+  if(it.s)h+='<div class="nt">'+esc(it.s)+'</div>';
+  if(it.a)h+='<div class="nt">کاربرد: '+esc(it.a)+'</div>';
+  if(it.t)h+='<div class="nt">'+esc(it.t)+'</div>';
+  if(it.d&&it.d<it.p)h+='<div class="pr"><s>'+money(it.p)+'</s><b class="ds">'+money(it.d)+'</b><span>'+unitName()+' — با تخفیف</span></div>';
+  else h+='<div class="pr"><b>'+money(it.p)+'</b><span>'+unitName()+'</span></div>';
+  var w=waNum();
+  if(w)h+='<a class="wa" target="_blank" rel="noopener" href="https://wa.me/'+w+'?text='+encodeURIComponent('سلام، درباره‌ی «'+it.n+'»'+(it.c?' (کد '+it.c+')':'')+' می‌خواستم بپرسم.')+'">پرسش / سفارش در واتساپ</a>';
+  return h+'</div></div>';
+}
+
+function render(){
+  var part=VIEW.slice(0,LIM);
+  $('cn').textContent=VIEW.length?(VIEW.length.toLocaleString('fa-IR')+' کالا'):'';
+  $('res').innerHTML=VIEW.length?part.map(card).join(''):'<div class="empty" style="grid-column:1/-1">چیزی پیدا نشد. کلمه‌ی کوتاه‌تر یا اسم دیگه‌ای امتحان کنید.</div>';
+  var mo=$('mo');
+  if(VIEW.length>LIM){mo.style.display='block';mo.textContent='نمایش بیشتر ('+(VIEW.length-LIM).toLocaleString('fa-IR')+' کالای دیگر)';}
+  else mo.style.display='none';
+}
+
+function run(){
+  var words=norm($('q').value).split(' ').filter(Boolean);
+  VIEW=ALL.filter(function(o){
+    if(BR!=='all'&&o.b!==BR)return false;
+    return words.every(function(w){var cw=comp(w);return o._t.indexOf(w)>=0||(cw.length>2&&(o._c.indexOf(cw)>=0));});
+  });
+  LIM=STEP;render();
+}
+
+function chips(){
+  var seen={},list=[];ALL.forEach(function(o){if(o.b&&!seen[o.b]){seen[o.b]=1;list.push(o.b);}});
+  var box=$('br');
+  if(list.length<2){box.innerHTML='';return;}
+  box.innerHTML=['all'].concat(list).map(function(b){return '<button type="button" data-b="'+esc(b)+'" class="'+(b===BR?'on':'')+'">'+(b==='all'?'همه':esc(b))+'</button>';}).join('');
+}
+
+function head(){
+  var s=(D&&D.shop)||{};
+  document.title=(s.name?s.name+' — ':'')+'لیست قیمت';
+  $('tt').textContent=s.name||'لیست قیمت';
+  $('st').textContent=s.sub||'';
+  $('up').textContent=D&&D.updated?('آخرین به‌روزرسانی قیمت‌ها: '+D.updated):'';
+  $('un').textContent='نمایش به '+(UNIT==='toman'?'ریال':'تومان');
+  var f='';
+  var tel=telNum();
+  if(s.phone)f+='<div>تلفن: <a href="tel:'+esc(tel)+'">'+esc(s.phone)+'</a></div>';
+  if(s.addr)f+='<div>'+esc(s.addr)+'</div>';
+  if(D&&D.valid>0)f+='<div>اعتبار قیمت‌ها: '+Number(D.valid).toLocaleString('fa-IR')+' روز</div>';
+  if(D&&D.note)f+='<div style="white-space:pre-line;margin-top:6px">'+esc(D.note)+'</div>';
+  f+='<div style="margin-top:6px">قیمت‌ها ممکنه بدون اطلاع قبلی تغییر کنه؛ برای قیمت نهایی با ما تماس بگیرید.</div>';
+  $('ft').innerHTML=f;
+}
+
+$('q').addEventListener('input',function(){clearTimeout(TM);TM=setTimeout(run,130);});
+$('br').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;BR=b.getAttribute('data-b');chips();run();});
+$('mo').addEventListener('click',function(){LIM+=STEP;render();});
+$('un').addEventListener('click',function(){UNIT=UNIT==='toman'?'rial':'toman';try{localStorage.setItem('cu_unit',UNIT);}catch(e){}head();render();});
+$('res').addEventListener('click',function(e){var b=e.target.closest('.ph[data-im]');if(!b)return;$('lbi').src=b.getAttribute('data-im');$('lb').classList.add('on');});
+$('lb').addEventListener('click',function(){$('lb').classList.remove('on');$('lbi').removeAttribute('src');});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')$('lb').click();});
+
+function fail(t){$('res').innerHTML='<div class="msg" style="grid-column:1/-1">'+esc(t)+'</div>';}
+fetch('prices.json?t='+Date.now(),{cache:'no-store'}).then(function(r){
+  if(!r.ok)throw new Error('http');return r.json();
+}).then(function(j){
+  if(!j||!Array.isArray(j.items))throw new Error('bad');
+  D=j;ALL=j.items.filter(function(o){return o&&o.p>0;});
+  ALL.forEach(function(o){o._t=norm([o.n,o.e,o.c,o.o,o.a,o.s,o.t].join(' '));o._c=comp(o._t);});
+  head();chips();run();
+}).catch(function(){
+  fail(location.protocol==='file:'?'این صفحه باید از روی لینک سایت باز بشه، نه مستقیم از روی فایل.':'لیست قیمت بارگذاری نشد. اینترنت رو چک کنید و صفحه رو دوباره باز کنید.');
+});
+})();
+</script>
+</body>
+</html>
