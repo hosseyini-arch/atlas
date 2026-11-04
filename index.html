@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0d0e10">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<script>
+(function(){var th='dark';try{var t=localStorage.getItem('cu_theme'),fine=matchMedia('(hover:hover) and (pointer:fine)').matches;
+th=(fine&&(t==='dark'||t==='light'))?t:(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark');}catch(e){}
+document.documentElement.setAttribute('data-theme',th);})();
+</script>
+<title>اطلس تجارت | Atlas Tejarat</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0d0e10;--panel:#16181c;--panel2:#1c1f24;--ln:#2b2f36;--tx:#ecebe6;--mut:#9b9b95;--gt:#f2d68f;--gb:#d6a84f;--g1:#f2d68f;--g2:#d6a84f;--g3:#b7842f;--amber:#ffb42e;--up:#4ade80;--dn:#ff6b6b;--hero1:#1d2025;--hero2:#101114;--btn:#1a1204;--cell:#0a0b0d;--shadow:#0008}
+:root[data-theme=light]{--bg:#f2efe8;--panel:#ffffff;--panel2:#faf7f0;--ln:#ddd4c0;--tx:#1b1913;--mut:#6c675b;--gt:#7d550f;--gb:#b88a2e;--g1:#f3d891;--g2:#dcae58;--g3:#bd8d35;--amber:#a65f00;--up:#188a4a;--dn:#c43d2f;--hero1:#fffdf7;--hero2:#eee7d6;--cell:#f7f3e8;--shadow:#0002}
+*,*:before,*:after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:Vazirmatn,Tahoma,Arial,sans-serif;line-height:1.65;padding-bottom:calc(76px + env(safe-area-inset-bottom,0))}
+button{font-family:inherit}
+.wrap{max-width:980px;margin:0 auto;padding:12px 14px 24px}
+.hero{position:relative;border:1px solid var(--ln);border-radius:18px;padding:14px;margin-bottom:10px;overflow:hidden;
+ background:repeating-linear-gradient(45deg,rgba(128,128,128,.05) 0 2px,transparent 2px 9px),repeating-linear-gradient(-45deg,rgba(128,128,128,.05) 0 2px,transparent 2px 9px),linear-gradient(160deg,var(--hero1),var(--hero2) 70%)}
+.hero:before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:linear-gradient(90deg,var(--g3),var(--g1),var(--g2),var(--g3))}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{min-width:0}
+.fa-name{font-size:1.45rem;font-weight:700;color:var(--gt);line-height:1.25}
+.en-name{font-family:'Segoe UI',Arial,sans-serif;direction:ltr;text-align:right;unicode-bidi:isolate;font-size:.82rem;letter-spacing:.32em;color:var(--gb);margin-top:2px;text-transform:uppercase}
+.sub{font-size:.78rem;color:var(--mut);margin-top:6px}
+.clock{flex:0 0 auto;width:104px;height:104px;filter:drop-shadow(0 6px 10px var(--shadow))}
+.clock svg{width:100%;height:100%;display:block;direction:ltr}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;align-items:center}
+.call,.gbtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;color:var(--btn);font-weight:700;font-size:.92rem;border:0;border-radius:12px;padding:9px 16px;background:linear-gradient(180deg,var(--g1),var(--g2) 55%,var(--g3));box-shadow:0 2px 0 #6e4b13,0 6px 14px var(--shadow);min-height:44px;cursor:pointer}
+.call svg{width:18px;height:18px;fill:var(--btn)}
+.ibtn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;padding:0 12px;border:1px solid var(--ln);background:var(--panel);color:var(--tx);border-radius:12px;cursor:pointer;font-size:.8rem}
+#th{display:none}
+@media (hover:hover) and (pointer:fine){#th{display:inline-flex}}
+.row{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.upd{flex:1 1 100%;background:var(--cell);border:1px solid var(--ln);border-radius:12px;padding:8px 12px}
+.lbl{font-size:.72rem;color:var(--mut)}
+.dg{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;margin-top:2px}
+.dg b{font-size:1.28rem;font-weight:700;color:var(--gt);font-variant-numeric:tabular-nums;letter-spacing:.06em}
+.dg span{font-size:.74rem;color:var(--mut)}
+.cdn{margin-top:8px;font-size:.82rem;color:var(--gt);font-weight:700}
+.sch{margin-top:8px;font-size:.76rem;color:var(--mut);line-height:1.8}
+.sch b{color:var(--tx)}
+.vol{margin-top:10px;border:1px solid #7a5200;background:linear-gradient(180deg,#3a2800,#2a1d00);color:#ffb42e;border-radius:12px;padding:9px 12px;font-size:.85rem;font-weight:700}
+:root[data-theme=light] .vol{background:linear-gradient(180deg,#fff0cf,#ffe4a8);color:#7a4a00;border-color:#d9a640}
+/* currency bar */
+.fx{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(170px,1fr);gap:8px;overflow-x:auto;padding:2px 1px 8px;margin-bottom:6px;scroll-snap-type:x proximity}
+.fx::-webkit-scrollbar{height:4px}
+.fxt{scroll-snap-align:start;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--ln);border-radius:14px;padding:9px 11px;min-width:170px}
+.fxh{display:flex;justify-content:space-between;align-items:center;font-size:.76rem;color:var(--mut)}
+.fxv{font-size:1.15rem;font-weight:700;color:var(--gt);font-variant-numeric:tabular-nums;margin:2px 0}
+.fxv small{font-size:.68rem;color:var(--mut);font-weight:400}
+.chip{display:inline-block;font-size:.72rem;font-weight:700;border-radius:999px;padding:0 8px}
+.chip.up{color:var(--up);background:rgba(74,222,128,.12)}
+.chip.dn{color:var(--dn);background:rgba(255,107,107,.12)}
+.chip.z{color:var(--mut);background:rgba(128,128,128,.12)}
+.fxs{display:block;width:100%;height:34px;direction:ltr}
+.fxm{font-size:.68rem;color:var(--mut);margin-top:2px}
+/* banners */
+.chg{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;border:1px solid var(--gb);background:linear-gradient(180deg,rgba(214,168,79,.14),rgba(214,168,79,.05));border-radius:14px;padding:9px 12px;margin-bottom:10px;font-size:.84rem}
+.chg b.dn{color:var(--up)}.chg b.up{color:var(--dn)}
+.chg button{border:1px solid var(--gb);background:transparent;color:var(--gt);border-radius:999px;padding:3px 12px;cursor:pointer;font-size:.78rem}
+/* featured */
+.feat{margin-bottom:12px}
+.feat h2{font-size:1rem;margin:4px 2px 8px;color:var(--gt)}
+.fs{display:grid;grid-auto-flow:column;grid-auto-columns:min(86%,320px);gap:10px;overflow-x:auto;padding:2px 1px 8px;scroll-snap-type:x mandatory}
+.fs .cd{scroll-snap-align:start}
+/* search */
+.sb{position:sticky;top:0;background:var(--bg);padding:8px 0 8px;z-index:5;box-shadow:0 8px 10px -8px var(--shadow)}
+#q{width:100%;font:inherit;font-size:1rem;padding:12px 14px;border:1px solid var(--gb);border-radius:12px;background:var(--panel);color:var(--tx);outline:none}
+#q:focus{box-shadow:0 0 0 3px rgba(214,168,79,.25)}
+.tl{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;align-items:center}
+.tl.sc{flex-wrap:nowrap;overflow-x:auto;padding-bottom:2px}
+.tl.sc::-webkit-scrollbar{display:none}
+.tl button,.tl select,.tl input{font:inherit;font-size:.78rem;border:1px solid var(--ln);background:var(--panel);color:var(--tx);border-radius:999px;padding:5px 12px;cursor:pointer;white-space:nowrap}
+.tl button.on{background:linear-gradient(180deg,var(--g1),var(--g2));color:var(--btn);border-color:var(--gb);font-weight:700}
+.tl .pf{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--ln);background:var(--panel);border-radius:999px;padding:2px 10px;font-size:.78rem}
+.tl .pf input{width:46px;border:0;background:transparent;padding:3px 0;text-align:center;color:var(--tx);outline:none}
+.tl .lb2{font-size:.72rem;color:var(--mut);margin-inline-end:2px}
+.cnt{font-size:.78rem;color:var(--mut);margin:8px 2px}
+/* cards */
+#res{display:grid;grid-template-columns:1fr;gap:10px}
+@media (min-width:760px){#res{grid-template-columns:1fr 1fr}.clock{width:128px;height:128px}.fa-name{font-size:1.8rem}}
+.cd{position:relative;display:flex;gap:12px;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--ln);border-right:3px solid var(--gb);border-radius:14px;padding:10px}
+.cd.ft{border-color:var(--gb)}
+.phw{position:relative;flex:0 0 96px}
+.ph{width:96px;height:96px;border-radius:10px;background:#efeee9;border:1px solid rgba(0,0,0,.35);padding:0;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:zoom-in}
+.ph img{width:100%;height:100%;object-fit:contain}
+.ph.no{cursor:default;font-size:.7rem;color:var(--mut);background:var(--cell);border:1px dashed var(--ln)}
+.rb{position:absolute;top:-4px;right:-4px;background:linear-gradient(180deg,var(--g1),var(--g3));color:var(--btn);font-size:.66rem;font-weight:700;border-radius:8px;padding:0 7px}
+.nw{position:absolute;bottom:-4px;right:-4px;background:var(--up);color:#052e16;font-size:.66rem;font-weight:700;border-radius:8px;padding:0 7px}
+.in{flex:1;min-width:0}
+.fa{font-weight:700;font-size:.95rem}
+.en{font-size:.78rem;color:var(--mut);direction:ltr;text-align:right;unicode-bidi:isolate}
+.cdw{display:flex;gap:5px;flex-wrap:wrap;margin:4px 0}
+.cdw span{direction:ltr;unicode-bidi:isolate;font-size:.74rem;background:var(--cell);border:1px solid var(--ln);border-radius:6px;padding:0 6px;color:var(--gt)}
+.nt{font-size:.76rem;color:var(--mut)}
+.pr{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;margin-top:6px}
+.pr b{font-size:1.12rem;color:var(--gt);font-variant-numeric:tabular-nums}
+.pr s{font-size:.8rem;color:var(--mut)}
+.pr b.ds{color:var(--amber)}
+.pr span{font-size:.74rem;color:var(--mut)}
+.pr .us{font-size:.8rem;color:var(--mut);direction:ltr;unicode-bidi:isolate}
+.pc{font-size:.7rem;font-weight:700;border-radius:999px;padding:0 7px}
+.pc.dn{color:var(--up);background:rgba(74,222,128,.12)}
+.pc.up{color:var(--dn);background:rgba(255,107,107,.12)}
+.mine{font-size:.78rem;color:var(--gt);margin-top:2px}
+.act{display:flex;gap:6px;align-items:center;margin-top:8px}
+.act .sp{flex:1}
+.ib{width:36px;height:36px;border-radius:10px;border:1px solid var(--ln);background:var(--cell);color:var(--tx);cursor:pointer;font-size:1rem;line-height:1;display:inline-flex;align-items:center;justify-content:center}
+.ib.on{color:var(--dn);border-color:var(--dn)}
+.ib.off{opacity:.45}
+.ad{border:0;border-radius:10px;padding:0 14px;height:36px;font-weight:700;font-size:.82rem;color:var(--btn);background:linear-gradient(180deg,var(--g1),var(--g2) 55%,var(--g3));cursor:pointer}
+.qt{display:inline-flex;align-items:center;border:1px solid var(--gb);border-radius:10px;overflow:hidden;height:36px}
+.qt button{width:36px;height:36px;border:0;background:var(--cell);color:var(--gt);font-size:1.1rem;cursor:pointer}
+.qt b{min-width:34px;text-align:center;font-size:.92rem}
+.empty,.msg{text-align:center;color:var(--mut);padding:30px 10px}
+.more{display:block;width:100%;font:inherit;margin:14px 0;padding:11px;border:1px solid var(--ln);background:var(--panel);color:var(--tx);border-radius:12px;cursor:pointer}
+footer{margin-top:20px;padding-top:14px;border-top:1px solid var(--ln);font-size:.8rem;color:var(--mut)}
+footer a{color:var(--gt)}
+footer .fn{color:var(--gt);font-weight:700;font-size:.9rem}
+footer .fe{font-family:'Segoe UI',Arial,sans-serif;direction:ltr;text-align:right;letter-spacing:.2em;font-size:.72rem;color:var(--gb)}
+/* order bar */
+.ob{position:fixed;inset:auto 0 0 0;z-index:20;padding:8px 12px calc(8px + env(safe-area-inset-bottom,0));background:linear-gradient(transparent,var(--bg) 35%)}
+.ob .in2{max-width:980px;margin:0 auto;display:flex;gap:8px}
+.ob button{flex:1;border:0;border-radius:14px;height:50px;font-weight:700;font-size:.95rem;cursor:pointer;color:var(--btn);background:linear-gradient(180deg,var(--g1),var(--g2) 55%,var(--g3));box-shadow:0 4px 14px var(--shadow)}
+.ob button.alt{flex:0 0 auto;padding:0 14px;color:var(--gt);background:var(--panel);border:1px solid var(--gb)}
+/* sheets */
+.sheet{position:fixed;inset:0;background:#000b;display:none;align-items:flex-end;justify-content:center;z-index:50}
+.sheet.on{display:flex}
+.pn{background:var(--panel);color:var(--tx);width:100%;max-width:640px;max-height:94vh;overflow:auto;border-radius:18px 18px 0 0;padding:14px;border:1px solid var(--ln)}
+@media (min-width:760px){.sheet{align-items:center}.pn{border-radius:18px}}
+.ph2{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.ph2 b{color:var(--gt);font-size:1.05rem}
+.ph2 button{border:1px solid var(--ln);background:var(--cell);color:var(--tx);border-radius:10px;width:36px;height:36px;cursor:pointer}
+.ol{border:1px solid var(--ln);border-radius:12px;overflow:hidden}
+.or{display:flex;gap:8px;align-items:center;padding:8px 10px;border-bottom:1px solid var(--ln);font-size:.84rem}
+.or:last-child{border-bottom:0}
+.or .nm{flex:1;min-width:0}
+.or .nm small{display:block;color:var(--mut);direction:ltr;text-align:right}
+.or .sm{font-variant-numeric:tabular-nums;color:var(--gt);white-space:nowrap;font-size:.8rem}
+.tot{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin:10px 2px;font-weight:700;color:var(--gt)}
+.pn h3{font-size:.9rem;margin:14px 0 6px}
+.frm{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.frm label{font-size:.76rem;color:var(--mut);display:block}
+.frm .full{grid-column:1/-1}
+.frm input,.frm textarea{width:100%;font:inherit;font-size:.9rem;margin-top:2px;padding:9px 10px;border:1px solid var(--ln);background:var(--cell);color:var(--tx);border-radius:10px;outline:none}
+.frm .bad input,.frm .bad textarea{border-color:var(--dn);box-shadow:0 0 0 2px rgba(255,107,107,.2)}
+.err{margin-top:10px;border:1px solid var(--dn);color:var(--dn);background:rgba(255,107,107,.08);border-radius:10px;padding:8px 10px;font-size:.84rem;font-weight:700}
+.oact{display:grid;gap:8px;margin-top:12px}
+.oact .chs{display:flex;gap:6px;flex-wrap:wrap}
+.oact .chs button,.oact .sbtn{border:1px solid var(--gb);background:var(--cell);color:var(--gt);border-radius:10px;padding:8px 12px;cursor:pointer;font-size:.82rem}
+.oact .gbtn{width:100%}
+.hint{font-size:.74rem;color:var(--mut)}
+.lb{position:fixed;inset:0;background:#000e;display:none;align-items:center;justify-content:center;z-index:60;padding:16px}
+.lb.on{display:flex}
+.lb img{max-width:100%;max-height:88vh;background:#fff;border-radius:10px}
+.toast{position:fixed;bottom:84px;left:50%;transform:translateX(-50%);background:var(--g2);color:var(--btn);font-weight:700;font-size:.85rem;padding:8px 16px;border-radius:999px;z-index:70;display:none;box-shadow:0 6px 18px var(--shadow);max-width:90vw;text-align:center}
+.toast.on{display:block}
+/* tooltips (mouse devices only) */
+@media (hover:hover) and (pointer:fine){
+ [data-tip]{position:relative}
+ [data-tip]:hover:after{content:attr(data-tip);position:absolute;z-index:80;bottom:calc(100% + 8px);right:50%;transform:translateX(50%);width:max-content;max-width:260px;white-space:normal;background:#111;color:#f4f0e4;border:1px solid var(--gb);border-radius:10px;padding:7px 11px;font-size:.76rem;font-weight:400;line-height:1.7;text-align:right;box-shadow:0 8px 22px #000a;pointer-events:none}
+}
+/* hidden helper for pdf */
+#pdfroot{position:fixed;left:-12000px;top:0;width:794px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<section class="hero">
+ <div class="top">
+  <div class="brand">
+   <div class="fa-name" id="nf">اطلس تجارت</div>
+   <div class="en-name" id="ne"></div>
+   <div class="sub" id="st"></div>
+   <div class="btns">
+    <a class="call" id="cl" href="#" style="display:none"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg><span>تماس بگیرید</span></a>
+    <button class="ibtn" id="th" type="button" data-tip="تغییر حالت نمایش: تاریک / روشن">🌓</button>
+   </div>
+  </div>
+  <div class="clock" aria-label="ساعت (وقت تهران)">
+   <svg viewBox="0 0 100 100" role="img">
+    <defs>
+     <linearGradient id="gd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6df9c"/><stop offset=".5" stop-color="#c8933a"/><stop offset="1" stop-color="#7d5516"/></linearGradient>
+     <radialGradient id="fc" cx="50%" cy="38%" r="75%"><stop offset="0" stop-color="#2a2d33"/><stop offset="1" stop-color="#0a0b0d"/></radialGradient>
+    </defs>
+    <circle cx="50" cy="50" r="49" fill="url(#gd)"/><circle cx="50" cy="50" r="45" fill="#050506"/><circle cx="50" cy="50" r="43.5" fill="url(#fc)"/>
+    <g id="tk"></g>
+    <g font-family="Vazirmatn,Tahoma,sans-serif" font-size="8.5" fill="#f2d68f" text-anchor="middle"><text x="50" y="25.5">۱۲</text><text x="77" y="53">۳</text><text x="50" y="80.5">۶</text><text x="23" y="53">۹</text></g>
+    <line id="hh" x1="50" y1="54" x2="50" y2="30" stroke="#f1e3bd" stroke-width="3.4" stroke-linecap="round"/>
+    <line id="mh" x1="50" y1="56" x2="50" y2="19" stroke="#f1e3bd" stroke-width="2.2" stroke-linecap="round"/>
+    <line id="sh" x1="50" y1="60" x2="50" y2="14" stroke="#ff7a3d" stroke-width="1.1" stroke-linecap="round"/>
+    <circle cx="50" cy="50" r="3" fill="url(#gd)"/><circle cx="50" cy="50" r="1.2" fill="#ff7a3d"/>
+   </svg>
+  </div>
+ </div>
+ <div class="row"><div class="upd"><div class="lbl">آخرین به‌روزرسانی قیمت‌ها</div><div class="dg"><b id="ud">—</b><b id="ut"></b><span id="uw"></span></div><div class="cdn" id="cd"></div></div></div>
+ <div class="vol" id="vo" style="display:none">⚠ بازار نوسانی است؛ در حال حاضر قیمت‌ها هر ۲ ساعت یک‌بار به‌روزرسانی می‌شوند.</div>
+ <div class="sch">زمان به‌روزرسانی قیمت‌ها: <b>ساعت ۹ صبح</b> و <b>ساعت ۱۳</b> (روزی ۲ بار).<br>در صورت نوسان شدید بازار، هر ۲ ساعت یک‌بار به‌روزرسانی می‌شود؛ در حالت عادی روزی دو بار.</div>
+</section>
+<section class="fx" id="fx" style="display:none"></section>
+<div class="chg" id="chg" style="display:none"></div>
+<section class="feat" id="feat" style="display:none"><h2>⭐ پیشنهاد ویژه اطلس تجارت</h2><div class="fs" id="fs"></div></section>
+<div class="sb">
+ <input id="q" type="search" placeholder="جستجو: نام کالا، کد، شماره‌ی فنی یا نوع ماشین" autocomplete="off" enterkeyhint="search">
+ <div class="tl sc" id="vh"></div>
+ <div class="tl sc" id="br"></div>
+ <div class="tl sc">
+  <select id="so" aria-label="مرتب‌سازی"><option value="0">مرتب‌سازی: پیش‌فرض</option><option value="1">ارزان‌ترین</option><option value="2">گران‌ترین</option><option value="3">بیشترین کاهش امروز</option><option value="4">بیشترین افزایش امروز</option><option value="5">نام کالا</option></select>
+  <button type="button" id="un"></button>
+  <span class="pf" id="pfw" data-tip="درصد سود خودتان را بزنید تا قیمت فروش به مشتری خودتان را زیر هر کالا ببینید."><span class="lb2">سود من</span><input id="pf" inputmode="decimal" placeholder="۰" autocomplete="off"><span>٪</span></span>
+ </div>
+</div>
+<div class="cnt" id="cn"></div>
+<div id="res"><div class="msg">در حال بارگذاری لیست قیمت…</div></div>
+<button class="more" id="mo" type="button" style="display:none"></button>
+<footer id="ft"></footer>
+</div>
+<div class="ob"><div class="in2"><button class="alt" id="rob" type="button" style="display:none" data-tip="افزودن کالاهای آخرین سفارش شما به سبد">🔁 سفارش مجدد</button><button id="ob" type="button">🧾 سفارش من</button></div></div>
+
+<div class="sheet" id="ord"><div class="pn">
+ <div class="ph2"><b>🧾 صورت سفارش</b><button type="button" id="ox" aria-label="بستن">✕</button></div>
+ <div class="ol" id="ol"></div>
+ <div class="tot" id="ot"></div>
+ <h3>مشخصات خریدار <span class="hint">(همه‌ی موارد ستاره‌دار الزامی است)</span></h3>
+ <div class="frm">
+  <div id="w1"><label>نام *<input id="f1" autocomplete="given-name"></label></div>
+  <div id="w2"><label>نام خانوادگی *<input id="f2" autocomplete="family-name"></label></div>
+  <div id="w3"><label>نام فروشگاه *<input id="f3" autocomplete="organization"></label></div>
+  <div id="w4"><label>شهر *<input id="f4" autocomplete="address-level2"></label></div>
+  <div class="full" id="w5"><label>آدرس *<textarea id="f5" rows="2" autocomplete="street-address"></textarea></label></div>
+  <div class="full"><label>شماره تماس (اختیاری)<input id="f6" inputmode="tel" autocomplete="tel"></label></div>
+ </div>
+ <div class="err" id="oe" style="display:none"></div>
+ <div class="oact">
+  <button class="gbtn" id="opdf" type="button">📄 دانلود PDF صورت سفارش</button>
+  <button class="sbtn" id="osh" type="button" style="display:none">📤 ارسال فایل PDF (واتساپ، ایتا، بله، روبیکا، تلگرام…)</button>
+  <div class="hint">ارسال به‌صورت متن:</div>
+  <div class="chs" id="oc"></div>
+  <button class="sbtn" id="oclr" type="button">🗑 پاک کردن سفارش</button>
+ </div>
+ <p class="hint">این سند درخواست خرید است و تا زمان تأیید اطلس تجارت، فاکتور قطعی فروش محسوب نمی‌شود.</p>
+</div></div>
+
+<div class="sheet" id="iq"><div class="pn">
+ <div class="ph2"><b>💬 پرسش درباره‌ی این کالا</b><button type="button" id="iqx" aria-label="بستن">✕</button></div>
+ <div class="hint" id="iqt" style="margin-bottom:10px"></div>
+ <div class="oact"><div class="chs" id="iqc"></div></div>
+</div></div>
+
+<div class="lb" id="lb"><img id="lbi" alt=""></div>
+<div class="toast" id="ts"></div>
+<div id="pdfroot"></div>
+<noscript><div class="msg">برای دیدن لیست قیمت، جاوااسکریپت مرورگر باید فعال باشه.</div></noscript>
+<script>
+(function(){
+'use strict';
+var $=function(i){return document.getElementById(i);};
+var AR={'ي':'ی','ك':'ک','ة':'ه','أ':'ا','إ':'ا','آ':'ا'};
+function norm(s){
+  s=String(s||'').toLowerCase().replace(/[يكةأإآ]/g,function(c){return AR[c];}).replace(/\u200c/g,' ');
+  s=s.replace(/[۰-۹]/g,function(c){return '۰۱۲۳۴۵۶۷۸۹'.indexOf(c);}).replace(/[٠-٩]/g,function(c){return '٠١٢٣٤٥٦٧٨٩'.indexOf(c);});
+  return s.replace(/\s+/g,' ').trim();
+}
+function comp(s){return s.replace(/[^a-z0-9\u0600-\u06ff*]/g,'');}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+function fd(s){return String(s).replace(/\d/g,function(d){return '۰۱۲۳۴۵۶۷۸۹'[d];});}
+function fa(n){return fd(Math.round(n).toLocaleString('en-US'));}
+function usd(n){return '$'+fd(Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}));}
+function ld(k,def){try{var v=JSON.parse(localStorage.getItem(k));return v==null?def:v;}catch(e){return def;}}
+function sv(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}
+function latin(s){return String(s||'').replace(/[۰-۹]/g,function(c){return '۰۱۲۳۴۵۶۷۸۹'.indexOf(c);}).replace(/[٠-٩]/g,function(c){return '٠١٢٣٤٥٦٧٨٩'.indexOf(c);});}
+var TOUCH=false;try{TOUCH=matchMedia('(hover:none) and (pointer:coarse)').matches;}catch(e){}
+var IOS=/iPad|iPhone|iPod/.test(navigator.userAgent);
+
+/* ---------- toast ---------- */
+var TT=null;
+function toast(t){var e=$('ts');e.textContent=t;e.classList.add('on');clearTimeout(TT);TT=setTimeout(function(){e.classList.remove('on');},3800);}
+
+/* ---------- live analog clock (Tehran time) ---------- */
+var TF=null;try{TF=new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Tehran',hour:'numeric',minute:'numeric',second:'numeric',hourCycle:'h23'});}catch(e){}
+function tehran(){
+  if(TF){var o={};TF.formatToParts(new Date()).forEach(function(p){if(p.type!=='literal')o[p.type]=+p.value;});return o;}
+  var d=new Date();return {hour:d.getHours(),minute:d.getMinutes(),second:d.getSeconds()};
+}
+(function(){
+  var g=$('tk'),h='',i,a,l;
+  for(i=0;i<60;i++){a=i*6*Math.PI/180;l=(i%5===0)?5:2.2;
+    h+='<line x1="'+(50+Math.sin(a)*41).toFixed(2)+'" y1="'+(50-Math.cos(a)*41).toFixed(2)+'" x2="'+(50+Math.sin(a)*(41-l)).toFixed(2)+'" y2="'+(50-Math.cos(a)*(41-l)).toFixed(2)+'" stroke="'+(i%5===0?'#d6a84f':'#6b6b66')+'" stroke-width="'+(i%5===0?1.5:.7)+'"/>';}
+  g.innerHTML=h;
+  function rot(id,deg){$(id).setAttribute('transform','rotate('+deg+' 50 50)');}
+  function tick(){var t=tehran(),m=t.minute+t.second/60,hr=(t.hour%12)+m/60;rot('hh',(hr*30).toFixed(2));rot('mh',(m*6).toFixed(2));rot('sh',t.second*6);}
+  function loop(){tick();setTimeout(loop,1000-(Date.now()%1000)+8);}
+  loop();
+  document.addEventListener('visibilitychange',function(){if(!document.hidden){tick();countdown();}});
+})();
+
+/* ---------- state ---------- */
+var D=null,ALL=[],MAP={},VIEW=[],LIM=30,STEP=30;
+var BR='all',VEH='all',FAVF=false,CHGF=false,SORT=0;
+var UNIT=ld('cu_unit','rial')==='toman'?'toman':'rial';
+var PCT=parseFloat(ld('cu_pct',0))||0;
+var CART=ld('cu_cart',{}),FAVS=ld('cu_fav',{}),PROF=ld('cu_prof',{});
+var SNAP=null,TM=null;
+if(!CART||typeof CART!=='object')CART={};if(!FAVS||typeof FAVS!=='object')FAVS={};if(!PROF||typeof PROF!=='object')PROF={};
+
+var VEHS=[
+ {k:'benz',n:'بنز (Mercedes)',re:/mercedes|benz|evobus|actros|axor|atego|مرسدس|بنز/},
+ {k:'volvo',n:'ولوو (Volvo)',re:/volvo|ولوو/},
+ {k:'scania',n:'اسکانیا (Scania)',re:/scania|اسکانیا/},
+ {k:'man',n:'مان (MAN)',re:/(^|[^a-z])man([^a-z]|$)/},
+ {k:'iveco',n:'ایویکو (Iveco)',re:/iveco|ایویکو/},
+ {k:'daf',n:'دی‌اف (DAF)',re:/(^|[^a-z])daf([^a-z]|$)|دی اف/},
+ {k:'renault',n:'رنو (Renault)',re:/renault|(^|[^a-z])rvi([^a-z]|$)|رنو/},
+ {k:'neoplan',n:'نئوپلان (Neoplan)',re:/neoplan|نئوپلان/},
+ {k:'bmc',n:'BMC',re:/(^|[^a-z])bmc([^a-z]|$)/}
+];
+var ALT={'بنز':'mercedes','مرسدس':'mercedes','ولوو':'volvo','اسکانیا':'scania','ایویکو':'iveco','رنو':'renault','نئوپلان':'neoplan'};
+var BRANKS={'KIONE':0,'OFS (Ozden)':1};
+
+function unitName(){return UNIT==='toman'?'تومان':'ریال';}
+function money(n){return fa(UNIT==='toman'?n/10:n);}
+function eff(o){return o.d&&o.d<o.p?o.d:o.p;}
+function effU(o){var u=(o.ud&&o.d&&o.d<o.p)?o.ud:o.u;if(u==null&&D&&D.rate>0)u=eff(o)/D.rate;return u;}
+function telNum(p){return latin(p||'').replace(/[^\d+]/g,'');}
+function waNum(p){var d=latin(p||'').replace(/\D/g,'');if(/^09\d{9}$/.test(d))return '98'+d.slice(1);if(/^0\d+$/.test(d))return '98'+d.slice(1);return d;}
+function contact(){return (D&&D.contact)||{};}
+
+/* ---------- theme ---------- */
+function setTheme(t){document.documentElement.setAttribute('data-theme',t);
+  var m=document.querySelector('meta[name=theme-color]');if(m)m.setAttribute('content',t==='light'?'#f2efe8':'#0d0e10');}
+$('th').addEventListener('click',function(){
+  var cur=document.documentElement.getAttribute('data-theme'),n=cur==='dark'?'light':'dark';
+  setTheme(n);try{localStorage.setItem('cu_theme',n);}catch(e){}
+});
+try{matchMedia('(prefers-color-scheme: light)').addEventListener('change',function(e){
+  var fine=matchMedia('(hover:hover) and (pointer:fine)').matches,st=null;try{st=localStorage.getItem('cu_theme');}catch(x){}
+  if(!(fine&&st))setTheme(e.matches?'light':'dark');});}catch(e){}
+setTheme(document.documentElement.getAttribute('data-theme')||'dark');
+
+/* ---------- header, stamp, countdown ---------- */
+function stamp(){
+  var d='—',t='',w='';
+  if(D&&D.ts){try{var dt=new Date(D.ts);
+    d=dt.toLocaleDateString('fa-IR',{timeZone:'Asia/Tehran',year:'numeric',month:'2-digit',day:'2-digit'});
+    t=dt.toLocaleTimeString('fa-IR',{timeZone:'Asia/Tehran',hour:'2-digit',minute:'2-digit',hour12:false});
+    w=dt.toLocaleDateString('fa-IR',{timeZone:'Asia/Tehran',weekday:'long'});}catch(e){d=D.updated||'—';}}
+  else if(D&&D.updated)d=D.updated;
+  $('ud').textContent=d;$('ut').textContent=t;$('uw').textContent=w;
+}
+function countdown(){
+  var el=$('cd');if(!D){el.textContent='';return;}
+  var rem;
+  if(D.vol){rem=Math.floor((D.ts+7200000-Date.now())/1000);if(rem<=0){el.textContent='⏳ به‌روزرسانی جدید قیمت‌ها به‌زودی منتشر می‌شود';return;}}
+  else{var t=tehran(),now=t.hour*3600+t.minute*60+t.second,slots=[9*3600,13*3600],nx=null,i;
+    for(i=0;i<slots.length;i++){if(slots[i]>now){nx=slots[i];break;}}
+    if(nx===null)nx=slots[0]+86400;rem=nx-now;}
+  var h=Math.floor(rem/3600),m=Math.ceil((rem%3600)/60);if(m===60){h++;m=0;}
+  var txt=(h?fd(h)+' ساعت':'')+(h&&m?' و ':'')+(m?fd(m)+' دقیقه':'');
+  el.textContent='⏳ به‌روزرسانی بعدی قیمت‌ها تا '+(txt||'چند ثانیه')+' دیگر';
+}
+setInterval(countdown,20000);
+function head(){
+  var s=(D&&D.shop)||{};
+  var nf=s.name||'اطلس تجارت',ne=s.nameEn||'';
+  document.title=nf+(ne?' | '+ne:'');
+  $('nf').textContent=nf;$('ne').textContent=ne;$('st').textContent=s.sub||'';
+  $('un').textContent='نمایش به '+(UNIT==='toman'?'ریال':'تومان');
+  $('vo').style.display=(D&&D.vol)?'block':'none';
+  stamp();countdown();
+  var tel=telNum(s.phone),cl=$('cl');
+  if(tel){cl.href='tel:'+tel;cl.style.display='inline-flex';}else cl.style.display='none';
+  var f='<div class="fn">'+esc(nf)+'</div>'+(ne?'<div class="fe">'+esc(ne)+'</div>':'');
+  if(s.sub)f+='<div>'+esc(s.sub)+'</div>';
+  if(s.phone)f+='<div style="margin-top:6px">تلفن: <a href="tel:'+esc(tel)+'">'+esc(s.phone)+'</a></div>';
+  if(s.addr)f+='<div>'+esc(s.addr)+'</div>';
+  if(D&&D.valid>0)f+='<div>اعتبار قیمت‌ها: '+fd(D.valid)+' روز</div>';
+  if(D&&D.note)f+='<div style="white-space:pre-line;margin-top:6px">'+esc(D.note)+'</div>';
+  f+='<div style="margin-top:6px">قیمت‌ها ممکنه بدون اطلاع قبلی تغییر کنه؛ برای قیمت نهایی با ما تماس بگیرید.</div>';
+  f+='<div style="margin-top:8px"><button type="button" class="sbtn" id="inst" style="display:none;border:1px solid var(--gb);background:var(--cell);color:var(--gt);border-radius:10px;padding:6px 12px;cursor:pointer">📲 نصب روی صفحه‌ی اصلی گوشی</button><span class="hint" id="insh"></span></div>';
+  $('ft').innerHTML=f;installUi();
+}
+
+/* ---------- currency bar ---------- */
+var FXN={USD:'دلار آمریکا',CNY:'یوان چین',TRY:'لیر ترکیه'};
+function spark(h,pc){
+  var W=120,H=34,P=3;
+  if(!h||h.length<2)return '<svg class="fxs" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none"><line x1="0" y1="17" x2="'+W+'" y2="17" stroke="var(--ln)" stroke-dasharray="3 3"/></svg>';
+  var mn=Math.min.apply(null,h),mx=Math.max.apply(null,h),rg=(mx-mn)||1,pts=h.map(function(v,i){return [P+(W-2*P)*i/(h.length-1),H-P-(H-2*P)*(v-mn)/rg];});
+  var col=pc>0?'var(--up)':(pc<0?'var(--dn)':'var(--gb)'),d=pts.map(function(p){return p[0].toFixed(1)+','+p[1].toFixed(1);}).join(' '),lp=pts[pts.length-1];
+  return '<svg class="fxs" viewBox="0 0 '+W+' '+H+'" preserveAspectRatio="none"><polyline points="'+P+','+(H-P)+' '+d+' '+(W-P)+','+(H-P)+'" fill="'+col+'" fill-opacity=".10" stroke="none"/><polyline points="'+d+'" fill="none" stroke="'+col+'" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/><circle cx="'+lp[0].toFixed(1)+'" cy="'+lp[1].toFixed(1)+'" r="2.6" fill="'+col+'"/></svg>';
+}
+function fxBar(){
+  var R=(D&&D.rates)||{},keys=['USD','CNY','TRY'].filter(function(k){return R[k]&&R[k].v>0;}),box=$('fx');
+  if(!keys.length){box.style.display='none';return;}
+  box.style.display='grid';
+  box.innerHTML=keys.map(function(k){
+    var r=R[k],pc=typeof r.pc==='number'?r.pc:null,cls=pc>0?'up':(pc<0?'dn':'z'),ar=pc>0?'▲':(pc<0?'▼':'•');
+    var tm='';try{var dt=new Date(r.ts);tm=dt.toLocaleTimeString('fa-IR',{timeZone:'Asia/Tehran',hour:'2-digit',minute:'2-digit',hour12:false})+' — '+dt.toLocaleDateString('fa-IR',{timeZone:'Asia/Tehran',month:'2-digit',day:'2-digit'});}catch(e){}
+    return '<div class="fxt"><div class="fxh"><span>'+FXN[k]+'</span><span class="chip '+cls+'" data-tip="درصد تغییر نسبت به دیروز">'+ar+' '+(pc===null?'—':fd(Math.abs(pc).toFixed(2))+'٪')+'</span></div>'
+     +'<div class="fxv">'+money(r.v)+' <small>'+unitName()+'</small></div>'+spark(r.h,pc)+'<div class="fxm">آخرین به‌روزرسانی: '+tm+'</div></div>';
+  }).join('');
+}
+
+/* ---------- since last visit ---------- */
+function visit(){
+  var cur={};ALL.forEach(function(o){cur[o.i]=o.p;});
+  var st=ld('cu_snap',null);
+  if(!st||!st.m)st={ts:D.ts,m:cur,base:null};
+  else if(st.ts!==D.ts)st={ts:D.ts,m:cur,base:st.m,baseTs:st.ts};
+  else st.m=cur;
+  sv('cu_snap',st);SNAP=st;
+}
+function chgSet(){
+  var s={cheap:[],pricey:[],fresh:[]};
+  if(!SNAP||!SNAP.base)return s;
+  ALL.forEach(function(o){var b=SNAP.base[o.i];if(b==null)s.fresh.push(o.i);else if(o.p<b)s.cheap.push(o.i);else if(o.p>b)s.pricey.push(o.i);});
+  return s;
+}
+function chgBar(){
+  var box=$('chg'),s=chgSet(),n=s.cheap.length+s.pricey.length+s.fresh.length;
+  if(!SNAP||!SNAP.base||!n){box.style.display='none';return;}
+  var when='';try{when=' ('+new Date(SNAP.baseTs).toLocaleDateString('fa-IR',{timeZone:'Asia/Tehran',month:'2-digit',day:'2-digit'})+')';}catch(e){}
+  var parts=[];
+  if(s.cheap.length)parts.push('<b class="dn">'+fd(s.cheap.length)+' کالا ارزان‌تر</b>');
+  if(s.pricey.length)parts.push('<b class="up">'+fd(s.pricey.length)+' کالا گران‌تر</b>');
+  if(s.fresh.length)parts.push('<b>'+fd(s.fresh.length)+' کالای جدید</b>');
+  box.style.display='flex';
+  box.innerHTML='<span>از آخرین بازدیدت'+when+': '+parts.join('، ')+'</span><button type="button" id="chgb">'+(CHGF?'نمایش همه':'فقط تغییرات')+'</button>';
+}
+
+/* ---------- filtering ---------- */
+function vehRe(k){for(var i=0;i<VEHS.length;i++)if(VEHS[i].k===k)return VEHS[i].re;return null;}
+function run(keep){
+  var words=norm($('q').value).split(' ').filter(Boolean),chg=null;
+  if(CHGF){var s=chgSet();chg={};s.cheap.concat(s.pricey,s.fresh).forEach(function(i){chg[i]=1;});}
+  var vre=VEH!=='all'?vehRe(VEH):null;
+  VIEW=ALL.filter(function(o){
+    if(BR!=='all'&&o.b!==BR)return false;
+    if(FAVF&&!FAVS[o.i])return false;
+    if(chg&&!chg[o.i])return false;
+    if(vre&&!vre.test(o._v))return false;
+    return words.every(function(w){var cw=comp(w),al=ALT[w];return o._t.indexOf(w)>=0||(al&&o._t.indexOf(al)>=0)||(cw.length>2&&o._c.indexOf(cw)>=0);});
+  });
+  var idx={};VIEW.forEach(function(o,i){idx[o.i]=i;});
+  var rank=function(o){var r=BRANKS[o.b];return r==null?2:r;};
+  if(SORT===0)VIEW.sort(function(a,b){return rank(a)-rank(b)||idx[a.i]-idx[b.i];});
+  else if(SORT===1)VIEW.sort(function(a,b){return eff(a)-eff(b);});
+  else if(SORT===2)VIEW.sort(function(a,b){return eff(b)-eff(a);});
+  else if(SORT===3)VIEW.sort(function(a,b){return (a.pc||0)-(b.pc||0);});
+  else if(SORT===4)VIEW.sort(function(a,b){return (b.pc||0)-(a.pc||0);});
+  else if(SORT===5)VIEW.sort(function(a,b){return String(a.n).localeCompare(String(b.n),'fa');});
+  if(!keep)LIM=STEP;
+  render();
+}
+
+/* ---------- cards ---------- */
+function qty(i){return CART[i]||0;}
+function card(o,feat){
+  var i=o.i,h='<div class="cd'+(o.f?' ft':'')+'" data-i="'+esc(i)+'"><div class="phw">';
+  if(o.im)h+='<button type="button" class="ph" data-im="'+esc(o.im)+'" aria-label="بزرگ‌نمایی عکس"><img loading="lazy" decoding="async" width="96" height="96" src="'+esc(o.im)+'" alt="" onerror="this.parentNode.className=\'ph no\';this.parentNode.textContent=\'بدون عکس\'"></button>';
+  else h+='<div class="ph no">بدون عکس</div>';
+  if(o.f)h+='<span class="rb">⭐ ویژه</span>';
+  if(o.nw)h+='<span class="nw">تازه</span>';
+  h+='</div><div class="in"><div class="fa">'+esc(o.n)+'</div>';
+  if(o.e)h+='<div class="en">'+esc(o.e)+'</div>';
+  var codes=[];if(o.c)codes.push(o.c);if(o.o)codes.push(o.o.length>70?o.o.slice(0,70)+'…':o.o);
+  if(codes.length)h+='<div class="cdw">'+codes.map(function(c){return '<span>'+esc(c)+'</span>';}).join('')+'</div>';
+  if(o.s)h+='<div class="nt">'+esc(o.s)+'</div>';
+  if(o.a)h+='<div class="nt">کاربرد: '+esc(o.a)+'</div>';
+  if(o.t)h+='<div class="nt">'+esc(o.t)+'</div>';
+  var u=effU(o),pc=(typeof o.pc==='number'&&Math.abs(o.pc)>=0.05)?'<span class="pc '+(o.pc<0?'dn':'up')+'" data-tip="تغییر قیمت نسبت به دیروز">'+(o.pc<0?'▼':'▲')+' '+fd(Math.abs(o.pc).toFixed(1))+'٪</span>':'';
+  if(o.d&&o.d<o.p)h+='<div class="pr"><s>'+money(o.p)+'</s><b class="ds">'+money(o.d)+'</b><span>'+unitName()+'</span>'+pc+'</div>';
+  else h+='<div class="pr"><b>'+money(o.p)+'</b><span>'+unitName()+'</span>'+pc+'</div>';
+  if(u!=null&&u>0)h+='<div class="pr" style="margin-top:0"><span class="us">'+usd(u)+'</span></div>';
+  if(PCT>0)h+='<div class="mine">قیمت فروش شما ('+fd(PCT)+'٪ سود): <b>'+money(eff(o)*(1+PCT/100))+'</b> '+unitName()+(u>0?' — '+usd(u*(1+PCT/100)):'')+'</div>';
+  h+='<div class="act"><button type="button" class="ib'+(FAVS[i]?' on':'')+'" data-a="fav" aria-label="علاقه‌مندی" data-tip="'+(FAVS[i]?'حذف از علاقه‌مندی‌ها':'افزودن به علاقه‌مندی‌ها')+'">'+(FAVS[i]?'♥':'♡')+'</button>'
+   +'<button type="button" class="ib'+(TOUCH?'':' off')+'" data-a="inq" aria-label="پرسش درباره‌ی کالا" data-tip="پرسش درباره‌ی این کالا از طریق پیامک یا پیام‌رسان‌ها — این قابلیت فقط روی گوشی همراه فعال است.">💬</button><span class="sp"></span>';
+  var q=qty(i);
+  h+=q?'<div class="qt"><button type="button" data-a="m" aria-label="کم">−</button><b>'+fd(q)+'</b><button type="button" data-a="p" aria-label="زیاد">+</button></div>':'<button type="button" class="ad" data-a="add">➕ سفارش</button>';
+  return h+'</div></div></div>';
+}
+function render(){
+  var part=VIEW.slice(0,LIM);
+  $('cn').textContent=VIEW.length?(fd(VIEW.length)+' کالا'):'';
+  $('res').innerHTML=VIEW.length?part.map(function(o){return card(o);}).join(''):'<div class="empty" style="grid-column:1/-1">'+(FAVF?'هنوز کالایی را به علاقه‌مندی‌ها اضافه نکرده‌اید.':'چیزی پیدا نشد. کلمه‌ی کوتاه‌تر یا اسم دیگه‌ای امتحان کنید.')+'</div>';
+  var mo=$('mo');
+  if(VIEW.length>LIM){mo.style.display='block';mo.textContent='نمایش بیشتر ('+fd(VIEW.length-LIM)+' کالای دیگر)';}else mo.style.display='none';
+  orderBar();
+}
+function renderFeat(){
+  var f=ALL.filter(function(o){return o.f;}),box=$('feat');
+  if(!f.length){box.style.display='none';return;}
+  box.style.display='block';$('fs').innerHTML=f.map(function(o){return card(o,true);}).join('');
+}
+function refreshCard(i){
+  var o=MAP[i];if(!o)return;
+  document.querySelectorAll('.cd[data-i="'+i+'"]').forEach(function(el){var t=document.createElement('div');t.innerHTML=card(o);el.replaceWith(t.firstChild);});
+  orderBar();
+}
+
+/* chips */
+function chips(){
+  var seen={},list=[];ALL.forEach(function(o){if(o.b&&!seen[o.b]){seen[o.b]=1;list.push(o.b);}});
+  if(BR!=='all'&&!seen[BR])BR='all';
+  var h='';
+  if(list.length>=2)h+=['all'].concat(list).map(function(b){return '<button type="button" data-b="'+esc(b)+'" class="'+(b===BR?'on':'')+'">'+(b==='all'?'همه':esc(b))+'</button>';}).join('');
+  var nf=Object.keys(FAVS).filter(function(i){return MAP[i];}).length;
+  h+='<button type="button" id="favb" class="'+(FAVF?'on':'')+'">♥ علاقه‌مندی‌ها ('+fd(nf)+')</button>';
+  $('br').innerHTML=h;
+  var cnt={};VEHS.forEach(function(v){cnt[v.k]=ALL.filter(function(o){return v.re.test(o._v);}).length;});
+  var vs=VEHS.filter(function(v){return cnt[v.k]>0;}).sort(function(a,b){return cnt[b.k]-cnt[a.k];});
+  $('vh').innerHTML=vs.length?('<span class="lb2">ماشین:</span><button type="button" data-v="all" class="'+(VEH==='all'?'on':'')+'">همه</button>'+vs.map(function(v){return '<button type="button" data-v="'+v.k+'" class="'+(VEH===v.k?'on':'')+'">'+v.n+' ('+fd(cnt[v.k])+')</button>';}).join('')):'';
+}
+
+/* ---------- order bar & sheet ---------- */
+function cartItems(){return Object.keys(CART).filter(function(i){return MAP[i]&&CART[i]>0;}).map(function(i){return {o:MAP[i],q:CART[i]};});}
+function cartTotals(){var t=0,u=0,n=0;cartItems().forEach(function(r){t+=eff(r.o)*r.q;var x=effU(r.o);if(x>0)u+=x*r.q;n+=r.q;});return {rial:t,usd:u,n:n,k:cartItems().length};}
+function orderBar(){
+  var T=cartTotals(),b=$('ob');
+  b.textContent=T.k?('🧾 سفارش من ('+fd(T.k)+' قلم) — '+money(T.rial)+' '+unitName()):'🧾 سفارش من';
+  var last=ld('cu_last',null);
+  $('rob').style.display=(!T.k&&last&&last.items&&last.items.length)?'block':'none';
+  saveCart();
+}
+function saveCart(){sv('cu_cart',CART);}
+function olist(){
+  var its=cartItems(),h='';
+  if(!its.length)h='<div class="empty">سبد سفارش خالی است. از لیست قیمت، کالا اضافه کنید.</div>';
+  its.forEach(function(r){var o=r.o;
+    h+='<div class="or" data-i="'+esc(o.i)+'"><div class="nm">'+esc(o.n)+(o.c?'<small>'+esc(o.c)+'</small>':'')+'</div><div class="qt"><button type="button" data-a="m">−</button><b>'+fd(r.q)+'</b><button type="button" data-a="p">+</button></div><div class="sm">'+money(eff(o)*r.q)+'</div></div>';});
+  $('ol').innerHTML=h;
+  var T=cartTotals();$('ot').innerHTML=its.length?'<span>جمع کل: '+money(T.rial)+' '+unitName()+'</span>'+(T.usd>0?'<span style="direction:ltr">≈ '+usd(T.usd)+'</span>':''):'';
+}
+function profFill(){['f1','f2','f3','f4','f5','f6'].forEach(function(id,k){$(id).value=PROF['p'+(k+1)]||'';});}
+function profSave(){['f1','f2','f3','f4','f5','f6'].forEach(function(id,k){PROF['p'+(k+1)]=$(id).value;});sv('cu_prof',PROF);}
+['f1','f2','f3','f4','f5','f6'].forEach(function(id){$(id).addEventListener('input',function(){profSave();var w=$('w'+id.slice(1));if(w)w.classList.remove('bad');$('oe').style.display='none';});});
+function chans(){
+  var C=contact(),h='';
+  if(C.wa)h+='<button type="button" data-c="wa">واتساپ</button>';
+  if(C.sms)h+='<button type="button" data-c="sms">پیامک</button>';
+  if(C.email)h+='<button type="button" data-c="mail">ایمیل</button>';
+  if(C.tg)h+='<button type="button" data-c="tg">تلگرام</button>';
+  if(C.eitaa)h+='<button type="button" data-c="eitaa">ایتا</button>';
+  if(C.bale)h+='<button type="button" data-c="bale">بله</button>';
+  if(C.rubika)h+='<button type="button" data-c="rubika">روبیکا</button>';
+  return h;
+}
+function openOrder(){
+  olist();profFill();$('oe').style.display='none';
+  $('oc').innerHTML=chans()+'<button type="button" data-c="copy">📋 کپی متن</button>';
+  var canFile=false;try{canFile=!!(navigator.canShare&&navigator.canShare({files:[new File(['x'],'a.pdf',{type:'application/pdf'})]}));}catch(e){}
+  $('osh').style.display=canFile?'block':'none';
+  $('ord').classList.add('on');
+}
+function closeOrder(){$('ord').classList.remove('on');}
+function validate(){
+  var names=['نام','نام خانوادگی','نام فروشگاه','شهر','آدرس'],bad=[],i;
+  for(i=1;i<=5;i++){var v=String($('f'+i).value||'').trim(),w=$('w'+i);if(v.length<2){bad.push(names[i-1]);w.classList.add('bad');}else w.classList.remove('bad');}
+  var e=$('oe');
+  if(!cartItems().length){e.textContent='سبد سفارش خالی است؛ ابتدا کالا اضافه کنید.';e.style.display='block';return false;}
+  if(bad.length){e.textContent='برای ثبت و ارسال سفارش باید این موارد را تکمیل کنید: '+bad.join('، ')+'.';e.style.display='block';return false;}
+  e.style.display='none';return true;
+}
+function stampNow(){
+  var d=new Date(),dd=d.toLocaleDateString('fa-IR',{timeZone:'Asia/Tehran',year:'numeric',month:'2-digit',day:'2-digit'}),tt=d.toLocaleTimeString('fa-IR',{timeZone:'Asia/Tehran',hour:'2-digit',minute:'2-digit',hour12:false});
+  var p=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Tehran',year:'2-digit',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(d),o={};
+  p.forEach(function(x){if(x.type!=='literal')o[x.type]=x.value;});
+  return {date:dd,time:tt,no:'S'+o.year+o.month+o.day+o.hour+o.minute};
+}
+function orderText(st){
+  var s=(D&&D.shop)||{},its=cartItems(),T=cartTotals(),L=[];
+  L.push('صورت سفارش — '+(s.name||'اطلس تجارت')+(s.nameEn?' | '+s.nameEn:''));
+  L.push('شماره: '+st.no+' — '+st.date+' '+st.time);
+  L.push('نام: '+PROF.p1+' '+PROF.p2);
+  L.push('فروشگاه: '+PROF.p3+' — شهر: '+PROF.p4);
+  L.push('آدرس: '+PROF.p5);
+  if(String(PROF.p6||'').trim())L.push('تماس: '+PROF.p6);
+  L.push('————————');
+  its.forEach(function(r,k){L.push(fd(k+1)+') '+r.o.n+' | کد: '+(r.o.c||'-')+' | تعداد: '+fd(r.q)+' | قیمت واحد: '+fa(eff(r.o))+' ریال');});
+  L.push('————————');
+  L.push('جمع کل: '+fa(T.rial)+' ریال'+(T.usd>0?' (≈ '+usd(T.usd)+')':''));
+  L.push('این سند درخواست خرید است و تا زمان تأیید '+(s.name||'اطلس تجارت')+'، فاکتور قطعی فروش محسوب نمی‌شود.');
+  return L.join('\n');
+}
+function copyText(t){
+  var ok=false;try{var ta=document.createElement('textarea');ta.value=t;ta.setAttribute('readonly','');ta.style.cssText='position:fixed;top:0;left:0;opacity:0';document.body.appendChild(ta);ta.select();ta.setSelectionRange(0,t.length);ok=document.execCommand('copy');document.body.removeChild(ta);}catch(e){}
+  try{if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).catch(function(){});}catch(e){}
+  return ok;
+}
+var MSG={tg:['https://t.me/','تلگرام'],eitaa:['https://eitaa.com/','ایتا'],bale:['https://ble.ir/','بله'],rubika:['https://rubika.ir/','روبیکا']};
+function sendVia(ch,text,subject){
+  var C=contact(),enc=encodeURIComponent(text);
+  if(ch==='copy'){toast(copyText(text)?'متن کپی شد ✓':'کپی انجام نشد؛ متن را دستی انتخاب کنید');return;}
+  if(ch==='wa'){window.open('https://wa.me/'+waNum(C.wa)+'?text='+enc,'_blank');return;}
+  if(ch==='sms'){location.href='sms:'+telNum(C.sms)+(IOS?'&':'?')+'body='+enc;return;}
+  if(ch==='mail'){location.href='mailto:'+encodeURIComponent(C.email)+'?subject='+encodeURIComponent(subject||'')+'&body='+enc;return;}
+  var m=MSG[ch];if(!m)return;
+  copyText(text);toast('متن کپی شد؛ در چت '+m[1]+' ما، آن را paste کنید.');
+  var id=String(C[ch]||'').replace(/^@/,'').replace(/^https?:\/\/[^/]+\//,'');
+  window.open(m[0]+encodeURIComponent(id),'_blank');
+}
+function saveLast(){var its=cartItems().map(function(r){return {i:r.o.i,q:r.q};});sv('cu_last',{ts:Date.now(),items:its});}
+
+/* ---------- PDF ---------- */
+var LIBS=null;
+function loadScript(src){return new Promise(function(ok,no){var s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=function(){no(new Error('lib '+src));};document.head.appendChild(s);});}
+function libs(){if(!LIBS)LIBS=loadScript('lib/html2canvas.min.js').then(function(){return loadScript('lib/jspdf.min.js');});return LIBS;}
+function pdfPage(st,rows,pi,pn,first,last,T){
+  var s=(D&&D.shop)||{},nf=esc(s.name||'اطلس تجارت'),ne=esc(s.nameEn||'');
+  var h='<div class="pg" style="position:relative;width:794px;height:1123px;background:#fff;color:#1b1913;font-family:Vazirmatn,Tahoma,Arial,sans-serif;direction:rtl;overflow:hidden;box-sizing:border-box;padding:34px 40px">';
+  h+='<div style="position:absolute;left:0;top:0;right:0;height:7px;background:linear-gradient(90deg,#8f6420,#f2d68f,#d6a84f,#8f6420)"></div>';
+  h+='<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none"><div style="transform:rotate(-32deg);font-size:120px;font-weight:700;color:rgba(160,120,40,.075);white-space:nowrap;text-align:center;line-height:1.2">اطلس تجارت<div style="font-size:50px;letter-spacing:14px;font-family:Arial">ATLAS TEJARAT</div></div></div>';
+  h+='<div style="position:relative">';
+  h+='<div style="display:flex;justify-content:space-between;align-items:flex-end;border-bottom:2px solid #d6a84f;padding-bottom:10px"><div><div style="font-size:26px;font-weight:700;color:#7d550f">'+nf+'</div><div style="font-size:12px;color:#6c675b">'+esc(s.sub||'')+'</div></div><div style="direction:ltr;text-align:left"><div style="font-size:15px;letter-spacing:6px;color:#8a6a20;font-family:Arial">'+ne.toUpperCase()+'</div><div style="font-size:11px;color:#6c675b">'+esc(s.phone||'')+'</div></div></div>';
+  if(s.addr)h+='<div style="font-size:11px;color:#6c675b;margin-top:4px">'+esc(s.addr)+'</div>';
+  if(first){
+    h+='<div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px"><div style="font-size:24px;font-weight:700">صورت سفارش</div><div style="font-size:12px;text-align:left;direction:ltr;color:#444">No: '+st.no+'<br><span style="direction:rtl;unicode-bidi:isolate">'+st.date+' — '+st.time+'</span></div></div>';
+    h+='<div style="margin-top:10px;border:1px solid #d9cfb6;border-radius:8px;padding:10px 14px;font-size:13px;line-height:2;background:#fbf8ef"><b>خریدار:</b> '+esc(PROF.p1)+' '+esc(PROF.p2)+' &nbsp;|&nbsp; <b>فروشگاه:</b> '+esc(PROF.p3)+' &nbsp;|&nbsp; <b>شهر:</b> '+esc(PROF.p4)+(String(PROF.p6||'').trim()?' &nbsp;|&nbsp; <b>تماس:</b> '+esc(PROF.p6):'')+'<br><b>آدرس:</b> '+esc(PROF.p5)+'</div>';
+  }else h+='<div style="margin-top:10px;font-size:14px;font-weight:700">صورت سفارش — ادامه ('+st.no+')</div>';
+  h+='<table style="width:100%;border-collapse:collapse;margin-top:12px;font-size:12px;table-layout:fixed"><thead><tr style="background:#1b1913;color:#f2d68f"><th style="width:34px;padding:7px 4px">ردیف</th><th style="width:120px;padding:7px 4px">کد</th><th style="padding:7px 4px">شرح کالا</th><th style="width:48px;padding:7px 4px">تعداد</th><th style="width:96px;padding:7px 4px">قیمت واحد (ریال)</th><th style="width:104px;padding:7px 4px">مبلغ (ریال)</th></tr></thead><tbody>';
+  rows.forEach(function(r){var o=r.o;
+    h+='<tr style="height:44px;border-bottom:1px solid #e6dfcb"><td style="text-align:center">'+fd(r.n)+'</td><td style="direction:ltr;text-align:center;font-size:11px;word-break:break-all">'+esc(o.c||'-')+'</td><td style="padding:3px 6px;line-height:1.5"><div style="max-height:36px;overflow:hidden">'+esc(o.n)+'</div></td><td style="text-align:center;font-weight:700">'+fd(r.q)+'</td><td style="text-align:center">'+fa(eff(o))+'</td><td style="text-align:center;font-weight:700">'+fa(eff(o)*r.q)+'</td></tr>';});
+  h+='</tbody></table>';
+  if(last){
+    h+='<div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center;border:2px solid #d6a84f;border-radius:8px;padding:9px 14px;background:#fbf8ef"><div style="font-size:15px;font-weight:700">جمع کل: '+fa(T.rial)+' ریال</div>'+(T.usd>0?'<div style="direction:ltr;font-size:13px;color:#444">≈ '+usd(T.usd)+'</div>':'')+'</div>';
+    h+='<div style="margin-top:10px;border:1px solid #c9bd9b;border-radius:8px;padding:8px 12px;font-size:12px;line-height:1.9;color:#333">این سند درخواست خرید مشتری است و تا زمان تأیید '+nf+'، فاکتور قطعی فروش محسوب نمی‌شود.</div>';
+  }
+  h+='</div><div style="position:absolute;bottom:18px;left:40px;right:40px;display:flex;justify-content:space-between;font-size:10px;color:#8a8472"><span>'+nf+(ne?' | '+ne:'')+'</span><span>صفحه '+fd(pi+1)+' از '+fd(pn)+'</span></div></div>';
+  return h;
+}
+function paginate(its){
+  var rows=its.map(function(r,i){return {o:r.o,q:r.q,n:i+1};}),pages=[],cap1=11,capN=19,i=0;
+  pages.push(rows.slice(0,cap1));i=cap1;
+  while(i<rows.length){pages.push(rows.slice(i,i+capN));i+=capN;}
+  var li=pages.length-1,allow=(li===0?cap1:capN)-4;
+  if(pages[li].length>allow){var mv=pages[li].splice(allow);pages.push(mv);}
+  return pages;
+}
+function makePdf(st){
+  return libs().then(function(){return document.fonts&&document.fonts.ready?document.fonts.ready:null;}).then(function(){
+    var its=cartItems(),T=cartTotals(),pages=paginate(its),root=$('pdfroot');
+    root.innerHTML=pages.map(function(rows,pi){return pdfPage(st,rows,pi,pages.length,pi===0,pi===pages.length-1,T);}).join('');
+    var els=[].slice.call(root.querySelectorAll('.pg')),J=window.jspdf.jsPDF,doc=new J({unit:'pt',format:'a4',compress:true}),W=doc.internal.pageSize.getWidth(),H=doc.internal.pageSize.getHeight();
+    var seq=Promise.resolve();
+    els.forEach(function(el,k){seq=seq.then(function(){return window.html2canvas(el,{scale:2,backgroundColor:'#ffffff',useCORS:true,logging:false});}).then(function(cv){
+      if(k>0)doc.addPage();doc.addImage(cv.toDataURL('image/jpeg',0.92),'JPEG',0,0,W,H);});});
+    return seq.then(function(){root.innerHTML='';return doc.output('blob');});
+  });
+}
+function busy(b,on){b.disabled=on;b.style.opacity=on?.6:1;}
+$('opdf').addEventListener('click',function(){
+  if(!validate())return;
+  var b=this,st=stampNow();busy(b,true);toast('در حال ساخت PDF…');
+  makePdf(st).then(function(blob){
+    var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='Order_'+st.no+'.pdf';document.body.appendChild(a);a.click();
+    setTimeout(function(){URL.revokeObjectURL(a.href);a.remove();},4000);saveLast();toast('PDF آماده شد ✓');
+  }).catch(function(){toast('ساخت PDF انجام نشد؛ اینترنت را بررسی کنید و دوباره امتحان کنید.');}).then(function(){busy(b,false);});
+});
+$('osh').addEventListener('click',function(){
+  if(!validate())return;
+  var b=this,st=stampNow();busy(b,true);
+  makePdf(st).then(function(blob){
+    var f=new File([blob],'Order_'+st.no+'.pdf',{type:'application/pdf'});
+    return navigator.share({files:[f],title:'صورت سفارش',text:orderText(st)}).then(function(){saveLast();});
+  }).catch(function(e){if(e&&e.name==='AbortError')return;toast('ارسال فایل انجام نشد؛ PDF را دانلود و دستی ارسال کنید.');}).then(function(){busy(b,false);});
+});
+$('oc').addEventListener('click',function(e){
+  var b=e.target.closest('button[data-c]');if(!b)return;
+  if(!validate())return;
+  var st=stampNow();sendVia(b.getAttribute('data-c'),orderText(st),'صورت سفارش '+st.no);saveLast();
+});
+$('oclr').addEventListener('click',function(){if(!cartItems().length)return;if(!confirm('همه‌ی کالاهای سبد سفارش پاک شود؟'))return;CART={};saveCart();olist();render();renderFeat();});
+$('ob').addEventListener('click',openOrder);
+$('ox').addEventListener('click',closeOrder);
+$('ord').addEventListener('click',function(e){if(e.target===this)closeOrder();});
+$('ol').addEventListener('click',function(e){
+  var b=e.target.closest('button[data-a]');if(!b)return;var r=b.closest('.or'),i=r.getAttribute('data-i');
+  CART[i]=(CART[i]||0)+(b.getAttribute('data-a')==='p'?1:-1);if(CART[i]<=0)delete CART[i];
+  olist();refreshCard(i);
+});
+$('rob').addEventListener('click',function(){
+  var last=ld('cu_last',null),n=0,miss=0;
+  if(!last||!last.items)return;
+  last.items.forEach(function(x){if(MAP[x.i]){CART[x.i]=(CART[x.i]||0)+x.q;n++;}else miss++;});
+  saveCart();render();renderFeat();openOrder();
+  toast(fd(n)+' قلم از آخرین سفارش به سبد اضافه شد'+(miss?' ('+fd(miss)+' قلم دیگر دیگر موجود/قیمت‌دار نیست)':''));
+});
+
+/* ---------- inquiry (phones only) ---------- */
+var IQ=null;
+function openInquiry(i){
+  if(!TOUCH){toast('پرسش از طریق پیام‌رسان فقط روی گوشی همراه فعال است.');return;}
+  var o=MAP[i];if(!o)return;IQ=o;
+  var txt='سلام، درباره قطعه '+o.n+(o.c?' (کد: '+o.c+')':'')+' سوال داشتم';
+  $('iqt').textContent=txt;
+  var h=chans().replace(/<button type="button" data-c="mail">ایمیل<\/button>/,'');
+  $('iqc').innerHTML=h||'<div class="hint">راه ارتباطی هنوز تنظیم نشده است؛ از دکمه‌ی «تماس بگیرید» استفاده کنید.</div>';
+  $('iq').classList.add('on');
+}
+$('iqc').addEventListener('click',function(e){var b=e.target.closest('button[data-c]');if(!b||!IQ)return;sendVia(b.getAttribute('data-c'),$('iqt').textContent,'');});
+$('iqx').addEventListener('click',function(){$('iq').classList.remove('on');});
+$('iq').addEventListener('click',function(e){if(e.target===this)this.classList.remove('on');});
+
+/* ---------- list events ---------- */
+function onAct(e){
+  var im=e.target.closest('.ph[data-im]');
+  if(im){$('lbi').src=im.getAttribute('data-im');$('lb').classList.add('on');return;}
+  var b=e.target.closest('button[data-a]');if(!b)return;
+  var c=b.closest('.cd');if(!c)return;var i=c.getAttribute('data-i'),a=b.getAttribute('data-a');
+  if(a==='add'){CART[i]=1;}
+  else if(a==='p'){CART[i]=(CART[i]||0)+1;}
+  else if(a==='m'){CART[i]=(CART[i]||0)-1;if(CART[i]<=0)delete CART[i];}
+  else if(a==='fav'){if(FAVS[i])delete FAVS[i];else FAVS[i]=1;sv('cu_fav',FAVS);chips();if(FAVF){run(true);return;}}
+  else if(a==='inq'){openInquiry(i);return;}
+  refreshCard(i);
+}
+$('res').addEventListener('click',onAct);
+$('fs').addEventListener('click',onAct);
+$('lb').addEventListener('click',function(){$('lb').classList.remove('on');$('lbi').removeAttribute('src');});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){$('lb').click();closeOrder();$('iq').classList.remove('on');}});
+$('q').addEventListener('input',function(){clearTimeout(TM);TM=setTimeout(function(){run();},130);});
+$('br').addEventListener('click',function(e){
+  var f=e.target.closest('#favb');if(f){FAVF=!FAVF;chips();run();return;}
+  var b=e.target.closest('button[data-b]');if(!b)return;BR=b.getAttribute('data-b');chips();run();});
+$('vh').addEventListener('click',function(e){var b=e.target.closest('button[data-v]');if(!b)return;VEH=b.getAttribute('data-v');chips();run();});
+$('mo').addEventListener('click',function(){LIM+=STEP;render();});
+$('so').addEventListener('change',function(){SORT=parseInt(this.value,10)||0;run();});
+$('un').addEventListener('click',function(){UNIT=UNIT==='toman'?'rial':'toman';sv('cu_unit',UNIT);head();fxBar();render();renderFeat();});
+$('pf').value=PCT>0?String(PCT):'';
+$('pf').addEventListener('input',function(){var v=parseFloat(latin(this.value).replace(/[٫،,]/g,'.'));PCT=(isNaN(v)||v<0)?0:Math.min(v,500);sv('cu_pct',PCT);clearTimeout(TM);TM=setTimeout(function(){render();renderFeat();},200);});
+$('chg').addEventListener('click',function(e){if(e.target.id!=='chgb')return;CHGF=!CHGF;chgBar();run();});
+
+/* ---------- PWA ---------- */
+var DEFER=null;
+window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();DEFER=e;installUi();});
+function installUi(){
+  var b=$('inst'),h=$('insh');if(!b)return;
+  var standalone=false;try{standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone;}catch(e){}
+  if(standalone){b.style.display='none';return;}
+  if(DEFER){b.style.display='inline-block';b.onclick=function(){DEFER.prompt();DEFER=null;b.style.display='none';};}
+  else if(IOS){h.textContent='برای نصب: دکمه‌ی اشتراک‌گذاری مرورگر ← «Add to Home Screen».';}
+}
+if('serviceWorker' in navigator&&location.protocol.indexOf('http')===0){try{navigator.serviceWorker.register('sw.js').catch(function(){});}catch(e){}}
+
+/* ---------- data ---------- */
+function apply(j,first){
+  D=j;ALL=j.items.filter(function(o){return o&&o.p>0;});MAP={};
+  ALL.forEach(function(o){
+    if(!o.i)o.i=String(o.c||o.n);
+    MAP[o.i]=o;
+    o._t=norm([o.n,o.e,o.c,o.o,o.a,o.s,o.t].join(' '));o._c=comp(o._t);o._v=norm([o.a,o.n,o.e,o.s].join(' '));
+  });
+  Object.keys(CART).forEach(function(i){if(!MAP[i])delete CART[i];});
+  head();fxBar();visit();chgBar();chips();renderFeat();run(!first);
+}
+function fail(t){$('res').innerHTML='<div class="msg" style="grid-column:1/-1">'+esc(t)+'</div>';}
+function loadData(first){
+  return fetch('prices.json?t='+Date.now(),{cache:'no-store'}).then(function(r){if(!r.ok)throw new Error('http');return r.json();}).then(function(j){
+    if(!j||!Array.isArray(j.items))throw new Error('bad');
+    if(first)apply(j,true);
+    else if(!D||j.ts!==D.ts||j.vol!==D.vol){apply(j,false);toast('قیمت‌ها به‌روز شد ✓');}
+  }).catch(function(){
+    if(first)fail(location.protocol==='file:'?'این صفحه باید از روی لینک سایت باز بشه، نه مستقیم از روی فایل.':'لیست قیمت بارگذاری نشد. اینترنت رو چک کنید و صفحه رو دوباره باز کنید.');
+  });
+}
+loadData(true);
+setInterval(function(){if(!document.hidden)loadData(false);},180000);
+document.addEventListener('visibilitychange',function(){if(!document.hidden&&D)loadData(false);});
+})();
+</script>
+</body>
+</html>
