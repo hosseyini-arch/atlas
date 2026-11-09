@@ -364,6 +364,32 @@ body{background:radial-gradient(900px 420px at 88% -8%,rgba(224,169,72,.16),tran
 
 .sb{background:color-mix(in srgb,var(--bg) 86%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
 @media (max-width:700px){.tr .nm .cdw{flex-wrap:wrap}.mn{width:58px}}
+/* ===== v20 ===== */
+.lhd{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:6px 2px 2px}
+.lhd .cnt{margin:0}
+.lhd .pf{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--gb);background:linear-gradient(180deg,rgba(224,169,72,.14),transparent),var(--panel);border-radius:999px;padding:3px 12px;font-size:.8rem;color:var(--gt)}
+.lhd .pf .lb2{font-weight:700}
+.lhd .pf input{width:48px;border:0;background:transparent;text-align:center;color:var(--tx);outline:none;font:inherit;padding:3px 0}
+.vl{display:flex;gap:5px;flex-wrap:wrap;margin-top:4px}
+.vt{font-size:.68rem;border:1px solid var(--gb);color:var(--gt);background:rgba(224,169,72,.10);border-radius:999px;padding:0 8px;white-space:nowrap}
+.vt.vf{border-color:var(--up);color:var(--up);background:rgba(125,220,146,.10)}
+.vtb{display:grid;gap:4px;margin-bottom:4px}
+.vtb div{display:flex;justify-content:space-between;gap:8px;font-size:.78rem;border:1px solid var(--ln);background:var(--cell);border-radius:9px;padding:5px 9px}
+.vtb div b{color:var(--gt)}
+.vtb .cr{border-color:var(--gb)}
+.al.vg{color:var(--up);background:rgba(125,220,146,.07)}
+.sm small{display:block;font-size:.68rem;color:var(--mut)}
+#ot{display:flex;flex-direction:column;align-items:flex-start;gap:3px}
+#ot .sv{color:var(--up);font-weight:700;font-size:.84rem}
+.chg{flex-direction:column;align-items:stretch;gap:8px}
+.chg .cr1{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.chg .cb{font:inherit;font-size:.78rem;border:1px solid var(--ln);background:var(--panel);color:var(--tx);border-radius:999px;padding:5px 12px;cursor:pointer;min-height:34px}
+.chg .cb.dn{color:var(--up)}.chg .cb.up{color:var(--dn)}
+.chg .cb.on{background:linear-gradient(180deg,var(--g1),var(--g2));color:var(--btn);border-color:var(--gb);font-weight:700}
+.chg .seg{display:flex;border:1px solid var(--gb);border-radius:999px;overflow:hidden;align-self:flex-start}
+.chg .seg .cb{border:0;border-radius:0;background:transparent;padding:5px 16px}
+.chg .seg .cb.on{background:linear-gradient(180deg,var(--g1),var(--g2))}
+
 </style>
 </head>
 <body>
@@ -445,9 +471,9 @@ body{background:radial-gradient(900px 420px at 88% -8%,rgba(224,169,72,.16),tran
   <button type="button" class="fc" id="mbtn">⚙ نمایش</button>
  </div>
  <div class="vpan" id="vh"></div>
- <div class="mpan tl" id="mpan"><button type="button" id="vm"></button><button type="button" id="un"></button><span class="pf" id="pfw"><span class="lb2">سود من</span><input id="pf" inputmode="decimal" placeholder="۰" autocomplete="off"><span>٪</span></span></div>
+ <div class="mpan tl" id="mpan"><button type="button" id="vm"></button><button type="button" id="un"></button></div>
 </div>
-<div class="cnt" id="cn"></div>
+<div class="lhd"><div class="cnt" id="cn"></div><span class="pf" id="pfw"><span class="lb2">سود من</span><input id="pf" inputmode="decimal" placeholder="۰" autocomplete="off"><span>٪</span></span></div>
 <div id="res"><div class="msg">در حال بارگذاری لیست قیمت…</div></div>
 <button class="more" id="mo" type="button" style="display:none"></button>
 <footer id="ft"></footer>
@@ -569,7 +595,7 @@ function tehran(){
 
 /* ---------- state ---------- */
 var D=null,ALL=[],MAP={},VIEW=[],LIM=30,STEP=30;
-var BR='all',VEH='all',FAVF=false,CHGF=false,SORT=0;
+var BR='all',VEH='all',FAVF=false,CHGF=false,CHGM='none',SORT=0;
 var UNIT=ld('cu_unit','rial')==='toman'?'toman':'rial';
 var PCT=parseFloat(ld('cu_pct',0))||0;
 var CART=ld('cu_cart',{}),FAVS=ld('cu_fav',{}),PROF=ld('cu_prof',{});
@@ -695,21 +721,22 @@ function chgSet(){
 }
 function chgBar(){
   var box=$('chg'),s=chgSet(),n=s.cheap.length+s.pricey.length+s.fresh.length;
-  if(!SNAP||!SNAP.base||!n){box.style.display='none';return;}
+  if(!SNAP||!SNAP.base||!n){CHGF=false;CHGM='none';box.style.display='none';return;}
   var when='';try{when=' ('+new Date(SNAP.baseTs).toLocaleDateString('fa-IR',{timeZone:'Asia/Tehran',month:'2-digit',day:'2-digit'})+')';}catch(e){}
-  var parts=[];
-  if(s.cheap.length)parts.push('<b class="dn">'+fd(s.cheap.length)+' کالا ارزان‌تر</b>');
-  if(s.pricey.length)parts.push('<b class="up">'+fd(s.pricey.length)+' کالا گران‌تر</b>');
-  if(s.fresh.length)parts.push('<b>'+fd(s.fresh.length)+' کالای جدید</b>');
-  box.style.display='flex';
-  box.innerHTML='<span>از آخرین بازدیدت'+when+': '+parts.join('، ')+'</span><button type="button" id="chgb">'+(CHGF?'نمایش همه':'فقط تغییرات')+'</button>';
+  function b(m,txt,cls){return '<button type="button" class="cb'+(cls?' '+cls:'')+(CHGM===m?' on':'')+'" data-m="'+m+'">'+txt+'</button>';}
+  var h='<div class="cr1"><span>از آخرین بازدیدت'+when+':</span>';
+  if(s.cheap.length)h+=b('cheap',fd(s.cheap.length)+' ارزان‌تر','dn');
+  if(s.pricey.length)h+=b('pricey',fd(s.pricey.length)+' گران‌تر','up');
+  if(s.fresh.length)h+=b('fresh',fd(s.fresh.length)+' جدید','nw');
+  h+='</div><div class="seg">'+b('none','نمایش همه')+b('all','فقط تغییرات')+'</div>';
+  box.style.display='flex';box.innerHTML=h;
 }
 
 /* ---------- filtering ---------- */
 function vehRe(k){for(var i=0;i<VEHS.length;i++)if(VEHS[i].k===k)return VEHS[i].re;return null;}
 function run(keep){
   var pq=parseQ($('q').value),chg=null;
-  if(CHGF){var s=chgSet();chg={};s.cheap.concat(s.pricey,s.fresh).forEach(function(i){chg[i]=1;});}
+  if(CHGF){var s=chgSet(),ids=CHGM==='cheap'?s.cheap:(CHGM==='pricey'?s.pricey:(CHGM==='fresh'?s.fresh:s.cheap.concat(s.pricey,s.fresh)));chg={};ids.forEach(function(i){chg[i]=1;});}
   var vre=VEH!=='all'?vehRe(VEH):null;
   VIEW=ALL.filter(function(o){
     if(BR!=='all'&&o.b!==BR)return false;
@@ -750,8 +777,8 @@ function card(o,feat){
   var u=effU(o),pc=(typeof o.pc==='number'&&Math.abs(o.pc)>=0.05)?'<span class="pc '+(o.pc<0?'dn':'up')+'" data-tip="تغییر قیمت نسبت به دیروز">'+(o.pc<0?'▼':'▲')+' '+fd(Math.abs(o.pc).toFixed(1))+'٪</span>':'';
   if(o.d&&o.d<o.p)h+='<div class="pr"><s>'+money(o.p)+'</s><b class="ds">'+money(o.d)+'</b><span>'+unitName()+'</span>'+pc+'</div>';
   else h+='<div class="pr"><b>'+money(o.p)+'</b><span>'+unitName()+'</span>'+pc+'</div>';
-  if(u!=null&&u>0)h+='<div class="pr" style="margin-top:0"><span class="us">'+usd(u)+'</span></div>';
-  if(PCT>0)h+='<div class="mine">قیمت فروش شما ('+fd(PCT)+'٪ سود): <b>'+money(eff(o)*(1+PCT/100))+'</b> '+unitName()+(u>0?' — '+usd(u*(1+PCT/100)):'')+'</div>';
+  h+=volLine(o);
+  if(PCT>0)h+='<div class="mine">قیمت فروش شما ('+fd(PCT)+'٪ سود): <b>'+money(eff(o)*(1+PCT/100))+'</b> '+unitName()+'</div>';
   h+='<div class="act"><button type="button" class="ib'+(FAVS[i]?' on':'')+'" data-a="fav" aria-label="علاقه‌مندی" data-tip="'+(FAVS[i]?'حذف از علاقه‌مندی‌ها':'افزودن به علاقه‌مندی‌ها')+'">'+(FAVS[i]?'♥':'♡')+'</button>'
    +'<button type="button" class="ib'+(TOUCH?'':' off')+'" data-a="inq" aria-label="پرسش درباره‌ی کالا" data-tip="پرسش درباره‌ی این کالا از طریق پیامک یا پیام‌رسان‌ها — این قابلیت فقط روی گوشی همراه فعال است.">💬</button><span class="sp"></span>';
   var q=qty(i);
@@ -787,6 +814,7 @@ function chips(){
   if(list.length>=2)h+=['all'].concat(list).map(function(b){return '<button type="button" data-b="'+esc(b)+'" class="'+(b===BR?'on':'')+'">'+(b==='all'?'همه':esc(b))+'</button>';}).join('');
   var nf=Object.keys(FAVS).filter(function(i){return MAP[i];}).length;
   h+='<button type="button" id="favb" class="'+(FAVF?'on':'')+'">♥ علاقه‌مندی‌ها ('+fd(nf)+')</button>';
+  if(CHGF)h+='<button type="button" id="chgx" class="on">🔔 '+(CHGM==='cheap'?'ارزان‌تر شده‌ها':(CHGM==='pricey'?'گران‌تر شده‌ها':(CHGM==='fresh'?'کالاهای جدید':'فقط تغییرات')))+' ✕</button>';
   $('br').innerHTML=h;
   var cnt={};VEHS.forEach(function(v){cnt[v.k]=ALL.filter(function(o){return v.re.test(o._v);}).length;});
   var vs=VEHS.filter(function(v){return cnt[v.k]>0;}).sort(function(a,b){return cnt[b.k]-cnt[a.k];});
@@ -797,7 +825,7 @@ function chips(){
 
 /* ---------- order bar & sheet ---------- */
 function cartItems(){return Object.keys(CART).filter(function(i){return MAP[i]&&CART[i]>0;}).map(function(i){return {o:MAP[i],q:CART[i]};});}
-function cartTotals(){var t=0,u=0,n=0;cartItems().forEach(function(r){t+=eff(r.o)*r.q;var x=effU(r.o);if(x>0)u+=x*r.q;n+=r.q;});return {rial:t,usd:u,n:n,k:cartItems().length};}
+function cartTotals(){var t=0,g=0,n=0,free=[];cartItems().forEach(function(r){var up=uPrice(r.o,r.q);t+=up*r.q;g+=eff(r.o)*r.q;n+=r.q;if(volInfo(r.o,r.q).free)free.push(r.o.n);});return {rial:t,gross:g,save:g-t,free:free,n:n,k:cartItems().length};}
 function orderBar(){
   var T=cartTotals(),b=$('ob');
   b.textContent=T.k?('🧾 سفارش من ('+fd(T.k)+' قلم) — '+money(T.rial)+' '+unitName()):'🧾 سفارش من';
@@ -810,9 +838,9 @@ function olist(){
   var its=cartItems(),h='';
   if(!its.length)h='<div class="empty">سبد سفارش خالی است. از لیست قیمت، کالا اضافه کنید.</div>';
   its.forEach(function(r){var o=r.o;
-    h+='<div class="or" data-i="'+esc(o.i)+'"><div class="nm">'+esc(o.n)+(o.c?'<small>'+esc(o.c)+'</small>':'')+'</div><div class="qt"><button type="button" data-a="m">−</button><b>'+fd(r.q)+'</b><button type="button" data-a="p">+</button></div><div class="sm">'+money(eff(o)*r.q)+'</div></div>'+altRow(o);});
+    h+='<div class="or" data-i="'+esc(o.i)+'"><div class="nm">'+esc(o.n)+(o.c?'<small>'+esc(o.c)+'</small>':'')+'</div><div class="qt"><button type="button" data-a="m">−</button><b>'+fd(r.q)+'</b><button type="button" data-a="p">+</button></div><div class="sm">'+money(uPrice(o,r.q)*r.q)+(volInfo(o,r.q).pct>0?'<small><s>'+money(eff(o)*r.q)+'</s></small>':'')+'</div></div>'+volRow(o,r.q)+altRow(o);});
   $('ol').innerHTML=h;
-  var T=cartTotals();$('ot').innerHTML=its.length?'<span>جمع کل: '+money(T.rial)+' '+unitName()+'</span>'+(T.usd>0?'<span style="direction:ltr">≈ '+usd(T.usd)+'</span>':''):'';
+  var T=cartTotals(),ot='';if(its.length){if(T.save>0)ot+='<span>جمع قبل از تخفیف: <s>'+money(T.gross)+'</s> '+unitName()+'</span><span class="sv">🎁 صرفه‌جویی شما از تخفیف عمده: '+money(T.save)+' '+unitName()+'</span>';ot+='<span>جمع کل: '+money(T.rial)+' '+unitName()+'</span>';if(T.free.length)ot+='<span class="sv">🚚 ارسال رایگان: '+esc(T.free.join('، '))+'</span>';}$('ot').innerHTML=ot;
 }
 function profFill(){['f1','f2','f3','f4','f5','f6'].forEach(function(id,k){$(id).value=PROF['p'+(k+1)]||'';});}
 function profSave(){['f1','f2','f3','f4','f5','f6'].forEach(function(id,k){PROF['p'+(k+1)]=$(id).value;});sv('cu_prof',PROF);}
@@ -859,9 +887,11 @@ function orderText(st){
   L.push('آدرس: '+PROF.p5);
   if(String(PROF.p6||'').trim())L.push('تماس: '+PROF.p6);
   L.push('————————');
-  its.forEach(function(r,k){L.push(fd(k+1)+') '+r.o.n+' | کد: '+(r.o.c||'-')+' | تعداد: '+fd(r.q)+' | قیمت واحد: '+fa(eff(r.o))+' ریال');});
+  its.forEach(function(r,k){var v=volInfo(r.o,r.q);L.push(fd(k+1)+') '+r.o.n+' | کد: '+(r.o.c||'-')+' | تعداد: '+fd(r.q)+' | قیمت واحد: '+fa(uPrice(r.o,r.q))+' ریال'+(v.pct>0?' (تخفیف عمده '+pf2(v.pct)+'٪)':''));});
   L.push('————————');
-  L.push('جمع کل: '+fa(T.rial)+' ریال'+(T.usd>0?' (≈ '+usd(T.usd)+')':''));
+  if(T.save>0){L.push('جمع قبل از تخفیف: '+fa(T.gross)+' ریال');L.push('تخفیف عمده: '+fa(T.save)+' ریال');}
+  L.push('جمع کل: '+fa(T.rial)+' ریال');
+  if(T.free.length)L.push('ارسال رایگان: '+T.free.join('، '));
   L.push('این سند درخواست خرید است و تا زمان تأیید '+(s.name||'اطلس تجارت')+'، فاکتور قطعی فروش محسوب نمی‌شود.');
   return L.join('\n');
 }
@@ -902,11 +932,11 @@ function pdfPage(st,rows,pi,pn,first,last,T){
     h+='<div style="margin-top:10px;border:1px solid #d9cfb6;border-radius:8px;padding:10px 14px;font-size:13px;line-height:2;background:#fbf8ef"><b>خریدار:</b> '+esc(PROF.p1)+' '+esc(PROF.p2)+' &nbsp;|&nbsp; <b>فروشگاه:</b> '+esc(PROF.p3)+' &nbsp;|&nbsp; <b>شهر:</b> '+esc(PROF.p4)+(String(PROF.p6||'').trim()?' &nbsp;|&nbsp; <b>تماس:</b> '+esc(PROF.p6):'')+'<br><b>آدرس:</b> '+esc(PROF.p5)+'</div>';
   }else h+='<div style="margin-top:10px;font-size:14px;font-weight:700">صورت سفارش — ادامه ('+st.no+')</div>';
   h+='<table style="width:100%;border-collapse:collapse;margin-top:12px;font-size:12px;table-layout:fixed"><thead><tr style="background:#1b1913;color:#f2d68f"><th style="width:34px;padding:7px 4px">ردیف</th><th style="width:120px;padding:7px 4px">کد</th><th style="padding:7px 4px">شرح کالا</th><th style="width:48px;padding:7px 4px">تعداد</th><th style="width:96px;padding:7px 4px">قیمت واحد (ریال)</th><th style="width:104px;padding:7px 4px">مبلغ (ریال)</th></tr></thead><tbody>';
-  rows.forEach(function(r){var o=r.o;
-    h+='<tr style="height:44px;border-bottom:1px solid #e6dfcb"><td style="text-align:center">'+fd(r.n)+'</td><td style="direction:ltr;text-align:center;font-size:11px;word-break:break-all">'+esc(o.c||'-')+'</td><td style="padding:3px 6px;line-height:1.5"><div style="max-height:36px;overflow:hidden">'+esc(o.n)+'</div></td><td style="text-align:center;font-weight:700">'+fd(r.q)+'</td><td style="text-align:center">'+fa(eff(o))+'</td><td style="text-align:center;font-weight:700">'+fa(eff(o)*r.q)+'</td></tr>';});
+  rows.forEach(function(r){var o=r.o,v=volInfo(o,r.q);
+    h+='<tr style="height:44px;border-bottom:1px solid #e6dfcb"><td style="text-align:center">'+fd(r.n)+'</td><td style="direction:ltr;text-align:center;font-size:11px;word-break:break-all">'+esc(o.c||'-')+'</td><td style="padding:3px 6px;line-height:1.5"><div style="max-height:36px;overflow:hidden">'+esc(o.n)+'</div>'+(v.pct>0?'<div style="font-size:10px;color:#9a6a12">تخفیف عمده '+pf2(v.pct)+'٪'+(v.kind==='carton'?' (کارتن کامل)':'')+'</div>':'')+'</td><td style="text-align:center;font-weight:700">'+fd(r.q)+'</td><td style="text-align:center">'+fa(uPrice(o,r.q))+(v.pct>0?'<div style="font-size:10px;color:#8a8472;text-decoration:line-through">'+fa(eff(o))+'</div>':'')+'</td><td style="text-align:center;font-weight:700">'+fa(uPrice(o,r.q)*r.q)+'</td></tr>';});
   h+='</tbody></table>';
   if(last){
-    h+='<div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center;border:2px solid #d6a84f;border-radius:8px;padding:9px 14px;background:#fbf8ef"><div style="font-size:15px;font-weight:700">جمع کل: '+fa(T.rial)+' ریال</div>'+(T.usd>0?'<div style="direction:ltr;font-size:13px;color:#444">≈ '+usd(T.usd)+'</div>':'')+'</div>';
+    h+='<div style="margin-top:12px;display:flex;justify-content:space-between;align-items:center;border:2px solid #d6a84f;border-radius:8px;padding:9px 14px;background:#fbf8ef"><div style="font-size:15px;font-weight:700">جمع کل: '+fa(T.rial)+' ریال</div>'+(T.save>0?'<div style="font-size:12px;color:#444;text-align:left">جمع قبل از تخفیف: '+fa(T.gross)+' — تخفیف عمده: '+fa(T.save)+' ریال</div>':'')+'</div>'+(T.free.length?'<div style="margin-top:8px;border:1px solid #1f8a4c;color:#14683a;border-radius:8px;padding:7px 12px;font-size:12px;background:#f1fbf5">ارسال رایگان: '+esc(T.free.join('، '))+'</div>':'');
     h+='<div style="margin-top:10px;border:1px solid #c9bd9b;border-radius:8px;padding:8px 12px;font-size:12px;line-height:1.9;color:#333">این سند درخواست خرید مشتری است و تا زمان تأیید '+nf+'، فاکتور قطعی فروش محسوب نمی‌شود.</div>';
   }
   h+='</div><div style="position:absolute;bottom:18px;left:40px;right:40px;display:flex;justify-content:space-between;font-size:10px;color:#8a8472"><span>'+nf+(ne?' | '+ne:'')+'</span><span>صفحه '+fd(pi+1)+' از '+fd(pn)+'</span></div></div>';
@@ -960,9 +990,11 @@ $('ord').addEventListener('click',function(e){if(e.target===this)closeOrder();})
 $('ol').addEventListener('click',function(e){
   var sw=e.target.closest('button[data-sw]');
   if(sw){var pr=sw.getAttribute('data-sw').split('|');CART[pr[1]]=(CART[pr[1]]||0)+(CART[pr[0]]||0);delete CART[pr[0]];olist();refreshCard(pr[0]);refreshCard(pr[1]);toast('کالا با هم‌ارز ارزان‌تر جایگزین شد ✓');return;}
+  var va=e.target.closest('button[data-vadd]');
+  if(va){var pv=va.getAttribute('data-vadd').split('|'),qa=CART[pv[0]]||0;CART[pv[0]]=qa+(parseInt(pv[1],10)||0);volToast(pv[0],qa,CART[pv[0]]);olist();refreshCard(pv[0]);return;}
   var b=e.target.closest('button[data-a]');if(!b)return;var r=b.closest('.or'),i=r.getAttribute('data-i');
-  CART[i]=(CART[i]||0)+(b.getAttribute('data-a')==='p'?1:-1);if(CART[i]<=0)delete CART[i];
-  olist();refreshCard(i);
+  var q0=CART[i]||0;CART[i]=(CART[i]||0)+(b.getAttribute('data-a')==='p'?1:-1);if(CART[i]<=0)delete CART[i];
+  volToast(i,q0,CART[i]||0);olist();refreshCard(i);
 });
 $('rob').addEventListener('click',function(){
   var last=ld('cu_last',null),n=0,miss=0;
@@ -999,8 +1031,9 @@ function onAct(e){
     return;
   }
   var c=b.closest('.cd,.tr');if(!c)return;var i=c.getAttribute('data-i'),a=b.getAttribute('data-a');
+  var q0=CART[i]||0;
   if(a==='add'){CART[i]=1;}
-  else if(a==='p'){CART[i]=(CART[i]||0)+1;}
+  else if(a==='p'){CART[i]=(CART[i]||0)+1;volToast(i,q0,CART[i]);}
   else if(a==='m'){CART[i]=(CART[i]||0)-1;if(CART[i]<=0)delete CART[i];}
   else if(a==='fav'){if(FAVS[i])delete FAVS[i];else FAVS[i]=1;sv('cu_fav',FAVS);chips();if(FAVF){run(true);return;}}
   else if(a==='inq'){openInquiry(i);return;}
@@ -1012,6 +1045,7 @@ $('lb').addEventListener('click',function(){$('lb').classList.remove('on');$('lb
 document.addEventListener('keydown',function(e){if(e.key==='Escape'){$('lb').click();closeOrder();$('iq').classList.remove('on');}});
 $('q').addEventListener('input',function(){clearTimeout(TM);TM=setTimeout(function(){run();},130);});
 $('br').addEventListener('click',function(e){
+  var cx=e.target.closest('#chgx');if(cx){CHGF=false;CHGM='none';chgBar();chips();run();return;}
   var f=e.target.closest('#favb');if(f){FAVF=!FAVF;chips();run();return;}
   var b=e.target.closest('button[data-b]');if(!b)return;BR=b.getAttribute('data-b');chips();run();});
 $('vh').addEventListener('click',function(e){var b=e.target.closest('button[data-v]');if(!b)return;VEH=b.getAttribute('data-v');chips();run();closePanels();});
@@ -1020,7 +1054,7 @@ $('so').addEventListener('change',function(){SORT=parseInt(this.value,10)||0;run
 $('un').addEventListener('click',function(){UNIT=UNIT==='toman'?'rial':'toman';sv('cu_unit',UNIT);head();fxBar();render();renderFeat();});
 $('pf').value=PCT>0?String(PCT):'';
 $('pf').addEventListener('input',function(){var v=parseFloat(latin(this.value).replace(/[٫،,]/g,'.'));PCT=(isNaN(v)||v<0)?0:Math.min(v,500);sv('cu_pct',PCT);clearTimeout(TM);TM=setTimeout(function(){render();renderFeat();},200);});
-$('chg').addEventListener('click',function(e){if(e.target.id!=='chgb')return;CHGF=!CHGF;chgBar();run();});
+$('chg').addEventListener('click',function(e){var b=e.target.closest('button[data-m]');if(!b)return;var m=b.getAttribute('data-m');CHGM=(CHGM===m&&m!=='none')?'none':m;CHGF=CHGM!=='none';chgBar();chips();run();$('sb').scrollIntoView({behavior:'smooth',block:'start'});toast(CHGF?(fd(VIEW.length)+' کالا نمایش داده می‌شود — برای برگشت «نمایش همه» را بزنید'):'همه‌ی کالاها نمایش داده می‌شود');});
 
 /* ---------- PWA ---------- */
 var DEFER=null;
@@ -1092,7 +1126,7 @@ function priceBlk(o){
   var u=effU(o),h='';
   if(o.d&&o.d<o.p)h+='<div class="pr1"><s>'+money(o.p)+'</s><b class="ds">'+money(o.d)+'</b><span>'+unitName()+'</span></div>';
   else h+='<div class="pr1"><b>'+money(o.p)+'</b><span>'+unitName()+'</span></div>';
-  h+='<div class="pr2">'+pcSpan(o)+(u!=null&&u>0?'<span class="us">'+usd(u)+'</span>':'')+'</div>';
+  h+='<div class="pr2">'+pcSpan(o)+'</div>'+volLine(o);
   if(PCT>0)h+='<div class="mine">قیمت فروش شما: <b>'+money(eff(o)*(1+PCT/100))+'</b> '+unitName()+'</div>';
   return h;
 }
@@ -1114,6 +1148,7 @@ function dtl(o){
   if(o.a)h+='<div class="nt">کاربرد: '+esc(o.a)+'</div>';
   if(o.t)h+='<div class="nt">'+esc(o.t)+'</div>';
   if(o.o){var ox=String(o.o).split(/\s*[\/,;·|‖]+\s*/).filter(Boolean).slice(0,14);if(ox.length)h+='<div class="lb3">شماره‌های فنی (OEM)</div><div class="cdw">'+ox.map(function(c){return '<span>'+esc(c)+'</span>';}).join('')+'</div>';}
+  h+=volTable(o);
   var al=alts(o);
   if(al.length){h+='<div class="lb3">🔁 کالاهای هم‌ارز (شماره‌ی فنی مشترک)</div>'+al.map(function(a){var df=(eff(a)-eff(o))/eff(o)*100;return '<div class="alr" data-go="'+esc(a.i)+'"><span>'+esc(a.n)+'<small class="nt"> '+esc(a.b||'')+'</small></span><span><b>'+money(eff(a))+'</b> <span class="df '+(df<0?'dn':'up')+'">'+(Math.abs(df)<0.5?'برابر':(df<0?'▼ ':'▲ ')+fd(Math.abs(df).toFixed(0))+'٪')+'</span></span></div>';}).join('');}
   return h+'</div></div>';
@@ -1129,7 +1164,7 @@ function trow(o){
 function item(o){return VIEWM==='card'?card(o):trow(o);}
 function goItem(i){
   var o=MAP[i];if(!o)return;
-  FAVF=false;CHGF=false;BR='all';VEH='all';chips();chgBar();
+  FAVF=false;CHGF=false;CHGM='none';BR='all';VEH='all';chips();chgBar();
   $('q').value=o.c||o.n;run();OPEN[i]=1;refreshCard(i);
   var el=document.getElementById('r_'+i)||document.querySelector('.cd[data-i="'+i+'"]');if(el)el.scrollIntoView({behavior:'smooth',block:'center'});
 }
@@ -1382,6 +1417,8 @@ var HELPS=[
   {sel:'#hbt',id:'hist',t:'سفارش‌های قبلیت اینجاست؛ با یک لمس دوباره به سبد اضافه می‌شن.'},
   {sel:'button[data-rs]',id:'reserve',t:'رزرو کالای در راه: پیامی برای ما فرستاده می‌شه تا با رسیدن بار، براتون نگه داریم. قیمت بعد از رسیدن اعلام می‌شه.'},
   {sel:'.cdr',id:'cd',t:'این حلقه نشون می‌ده تا به‌روزرسانی بعدی قیمت‌ها چقدر مونده. قیمت‌ها روزی دو بار تازه می‌شن.',act:false},
+  {sel:'.chg [data-m]',id:'chg',t:'فقط کالاهایی که از آخرین بازدیدت ارزان‌تر، گران‌تر یا جدید شدن رو نشون می‌ده. «نمایش همه» دوباره همه‌ی کالاها رو برمی‌گردونه.'},
+  {sel:'.vl .vt',id:'vol',t:'خرید عمده: هر چه تعداد بیشتر، تخفیف بیشتر. با رسیدن به تعداد کارتن، بالاترین تخفیف رو می‌گیری.',act:false},
   {sel:'#smy .mood',id:'mood',t:'خلاصه‌ی بازار: چند کالا نسبت به دیروز ارزان‌تر یا گران‌تر شده. سبز یعنی ارزان‌تر.',act:false}
 ];
 var HSEEN=ld('cu_hseen',{}),HELPMODE=ld('cu_help',false)===true,HOVER=false,HCUR=null,HBYPASS=null,HT=null;
@@ -1442,6 +1479,58 @@ window.addEventListener('resize',hideHelp);
 function helpBtn(){var b=$('hlp');b.classList.toggle('on',HELPMODE);b.textContent=HELPMODE?'؟ راهنما: روشن':'؟ راهنما';}
 helpBtn();
 $('hlp').addEventListener('click',function(){HELPMODE=!HELPMODE;sv('cu_help',HELPMODE);helpBtn();hideHelp();toast(HELPMODE?'راهنما روشن شد؛ روی هر بخش بزنی توضیحش رو می‌بینی.':'راهنما خاموش شد.');});
+
+/* =====================================================================
+   v20 — volume (tiered) discounts, carton discount, free shipping
+   ===================================================================== */
+function pf2(x){return fd(String(Math.round(x*10)/10).replace('.','٫'));}
+function volOn(){return !!(D&&D.vol&&D.vol.tiers&&D.vol.tiers.length);}
+function volInfo(o,q){
+  var r={pct:0,kind:'',free:false,next:null,cart:null};
+  if(!volOn()||!(q>0))return r;
+  var T=D.vol.tiers,t=0,nx=null,i;
+  for(i=0;i<T.length;i++){if(q>=T[i].q){if(T[i].p>t)t=T[i].p;}else if(!nx)nx=T[i];}
+  var hasC=o.cq>0&&o.cd>0,c=(hasC&&q>=o.cq)?o.cd:0;
+  r.pct=Math.max(t,c);r.kind=(c>0&&c>=t)?'carton':(t>0?'tier':'');
+  if(nx)r.next={q:nx.q,p:nx.p,need:Math.ceil(nx.q-q)};
+  if(hasC&&q<o.cq)r.cart={q:o.cq,p:o.cd,need:Math.ceil(o.cq-q)};
+  var fsq=D.vol.fsq||0;r.free=!!o.fs&&((hasC&&q>=o.cq)||(fsq>0&&q>=fsq));
+  return r;
+}
+function uPrice(o,q){var v=volInfo(o,q);return v.pct>0?Math.round(eff(o)*(1-v.pct/100)):eff(o);}
+function volToast(i,q0,q1){
+  var o=MAP[i];if(!o||!volOn())return;var a=volInfo(o,q0),b=volInfo(o,q1);
+  if(b.pct>a.pct)toast('🎉 تخفیف عمده '+pf2(b.pct)+'٪ برای این کالا فعال شد'+(b.free?' + ارسال رایگان':''));
+  else if(b.free&&!a.free)toast('🚚 ارسال رایگان برای این کالا فعال شد');
+}
+/* small incentive line under the price (rows and cards) */
+function volLine(o){
+  if(!volOn())return '';
+  var f=D.vol.tiers[0],h='<div class="vl"><span class="vt">🎁 از '+fd(f.q)+' عدد: '+pf2(f.p)+'٪ تخفیف بیشتر</span>';
+  if(o.cq>0&&o.cd>0)h+='<span class="vt">📦 کارتن ('+fd(o.cq)+' عددی): '+pf2(o.cd)+'٪</span>';
+  if(o.fs)h+='<span class="vt vf">🚚 ارسال رایگان خرید عمده</span>';
+  return h+'</div>';
+}
+/* ladder table inside the expanded row */
+function volTable(o){
+  if(!volOn())return '';
+  var T=D.vol.tiers,h='<div class="lb3">🎁 تخفیف خرید عمده (هر چه تعداد بیشتر، تخفیف بیشتر)</div><div class="vtb">';
+  T.forEach(function(t){h+='<div><span>از '+fd(t.q)+' عدد</span><b>'+pf2(t.p)+'٪ تخفیف</b></div>';});
+  if(o.cq>0&&o.cd>0)h+='<div class="cr"><span>📦 کارتن کامل ('+fd(o.cq)+' عددی)</span><b>'+pf2(o.cd)+'٪ تخفیف'+(o.fs?' + ارسال رایگان':'')+'</b></div>';
+  else if(o.fs&&D.vol.fsq>0)h+='<div class="cr"><span>🚚 ارسال رایگان</span><b>از '+fd(D.vol.fsq)+' عدد</b></div>';
+  return h+'</div>';
+}
+/* inside the order sheet: applied discount + nudges toward the next tier */
+function volRow(o,q){
+  if(!volOn())return '';
+  var v=volInfo(o,q),h='',need=null;
+  if(v.pct>0)h+='<div class="al vg"><span>🎁 تخفیف عمده '+pf2(v.pct)+'٪'+(v.kind==='carton'?' (کارتن کامل)':'')+' فعال شد — قیمت هر عدد: <b>'+money(uPrice(o,q))+'</b> '+unitName()+'</span></div>';
+  if(v.free)h+='<div class="al vg"><span>🚚 ارسال رایگان برای این کالا</span></div>';
+  if(v.next)h+='<div class="al"><span>🎁 '+fd(v.next.need)+' عدد دیگه بخری، تخفیف می‌شه '+pf2(v.next.p)+'٪</span><button type="button" data-vadd="'+esc(o.i)+'|'+v.next.need+'">+ '+fd(v.next.need)+'</button></div>';
+  if(v.cart)h+='<div class="al"><span>📦 تا کارتن کامل ('+fd(v.cart.q)+' عددی) '+fd(v.cart.need)+' عدد مونده — '+pf2(v.cart.p)+'٪ تخفیف'+(o.fs?' + ارسال رایگان':'')+'</span><button type="button" data-vadd="'+esc(o.i)+'|'+v.cart.need+'">+ '+fd(v.cart.need)+'</button></div>';
+  else if(o.fs&&!v.free&&D.vol.fsq>q)h+='<div class="al"><span>🚚 تا ارسال رایگان '+fd(Math.ceil(D.vol.fsq-q))+' عدد مونده</span><button type="button" data-vadd="'+esc(o.i)+'|'+Math.ceil(D.vol.fsq-q)+'">+ '+fd(Math.ceil(D.vol.fsq-q))+'</button></div>';
+  return h;
+}
 
 /* ---------- data ---------- */
 function apply(j,first){
